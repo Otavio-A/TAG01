@@ -1,6 +1,5 @@
-## POO_G1 - Dragon Quest
-- The project is a RPG (Role Playing Game) made in Java inspired by classic rpgs like Dragon Quest and Final Fantasy. In this game you play the role of four adventurers of different classes and fight a variety of monsters in turn-based combat. Monsters provide experience points (EXP) that level your party to unlock even stronger skills!
-- This project was developed by:
+## POO_G1 - Mario Bros
+- The project is a demake of the classic arcade game Mario Bros!
   - Otávio A. Araújo A042508@umaia.pt
   - Diogo Soares Gonçalves A042244@umaia.pt
   - Gonçalo Caridade Ribeiro A043540@umaia.pt
@@ -16,26 +15,18 @@
 
 ### PLANNED FEATURES
 
-- TURN-BASED COMBAT
-  - Combat is fought in turns, every turn the player has the option to choose actions for all party members to execute against the group of enemies. Combat outcome is decided by their individual stats, for example, a combatant with higher speed will act first, a combatant with higher strength will hit harder and so.
+- COOP
+  -You can't be Mario BROS without your Bro! Play coop with Mario as the player 1 and Luigi as your player 2! 
+- Jumping
+  - The character jumps whenever the space bar is pressed. When you hit the floor above you, you trip enemies, allowing you to kick them!
+- Score
+  - Every time you hit an enemy or defeat them you obtain points, getting coins also provides extra points
+- Levels
+  - Every level a number of monsters appear from the pipes above and make their way to the pipes on the bottom of the level. Every level has a limited level of monsters. Once only one monster remains he becomes faster
+- Enemies
+  - Not every monster is the same! The turtle falls after one hit, the crab takes two hits to fall, the moth will walk in small hops.
 
-- LEVELING SYSTEM
-  - Party members will learn with experience! The more they fight the more battle ready they become. Every monster will provide EXP, once the party member has earned enough EXP he will level up, increasing his stat points according to his assigned Job, for example a Mage will obtain more Intelligence points, allowing him to cast even stronger spells.
-
-- MONSTER VARIETY
-  - The world is full of dangers and horrors for our heroes to overcome! From the feeble slimes to the wicked undead, monsters will have different attributes and sets of skills to test the limits of your party! The Higher the risk the higher the reward, fighting stronger enemies will reward you with better EXP rewards!
-
-- JOBS
-  - Each party member brings his own sets of skills and abilities to balance each other out! Every party member will earn different stat points and abilities when leveling up! The four planned jobs are:
-  - The Warrior:
-    - The tank! You are the frontline of your party, ready to face any danger head on! Your high health pool allows you to survive most blows, so make sure to keep your party up and running!
-  - The Rogue:
-    - Quick and nimble! Your high speed allows you to act first, getting an early advantage on your enemies! 
-  - The White Mage:
-    - The support! Wielding holy magic your job is to keep your party alive! Praying to your god you can raise your party stats, heal them and even debuff your enemies! 
-  - The Black Mage:
-    - The glass cannon! As strong as you are fragile, as opposed to your other counterpart, the black mage casts damage dealing spells! But be careful! To cast a spell you must spend magic points, so take care not to run out in the middle of battle! 
-
+   
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
