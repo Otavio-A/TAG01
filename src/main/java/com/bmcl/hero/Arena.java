@@ -18,7 +18,7 @@ public class Arena {
     private int height;
 
     private List<Wall> walls;
-    private final List<Coin> coins;
+    //private final List<Coin> coins;
     private final List<Monster> monsters;
 
     public Arena(int width, int height) {
@@ -27,7 +27,7 @@ public class Arena {
 
         hero = new Hero(width / 2, height / 2);
         this.walls = createWalls();
-        this.coins = createCoins();
+        //this.coins = createCoins();
         this.monsters = createMonsters();
     }
 
@@ -64,14 +64,17 @@ public class Arena {
     }
 
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#01579B"));
+
+
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+
 
         hero.draw(graphics);
 
         for (Wall wall : walls) wall.draw(graphics);
 
-        for (Coin coin : coins) coin.draw(graphics);
+        //for (Coin coin : coins) coin.draw(graphics);
 
         for (Monster monster : monsters) monster.draw(graphics);
     }
@@ -79,14 +82,15 @@ public class Arena {
     public void processKey(KeyStroke key) {
         if (key.getKeyType() == KeyType.ArrowUp) moveHero(hero.moveUp());
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
-        if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
+        if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
 
-        retrieveCoins();
+        //retrieveCoins();
 
         verifyMonsterCollisions();
 
     }
+
 
     public void verifyMonsterCollisions() {
         for (Monster monster : monsters)
@@ -104,13 +108,13 @@ public class Arena {
         }
     }
 
-    private void retrieveCoins() {
+    /*private void retrieveCoins() {
         for (Coin coin : coins)
             if (hero.getPosition().equals(coin.getPosition())) {
                 coins.remove(coin);
                 break;
             }
-    }
+    }*/
 
     public void moveHero(Position position) {
         if (canHeroMove(position)) {
@@ -123,6 +127,7 @@ public class Arena {
         if (position.getX() > width - 1) return false;
         if (position.getY() < 0) return false;
         if (position.getY() > height - 1) return false;
+
 
         for (Wall wall : walls)
             if (wall.getPosition().equals(position)) return false;

@@ -36,26 +36,9 @@ public class Game {
 
     //Exemplo basico sem controlo de velocidade
 
-    public void run() throws IOException {
-        while (true) {
-            draw();
-            KeyStroke key = screen.pollInput(); //Não fica à espera de teclas, vai armazenando num buffer, devolve null se nenhuma tecla está no buffer
-            if (key != null) {
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
-                    screen.close();
-                if (key.getKeyType() == KeyType.EOF)
-                    break;
-                processKey(key);
 
-            }
-            arena.moveMonsters();
-            arena.verifyMonsterCollisions();
 
-        }
-    }
 
-    //Exemplo com controlo de velocidade
-      /*
     public void run() throws IOException {
         int FPS = 20;
         int frameTime = 1000 / FPS;
@@ -82,6 +65,8 @@ public class Game {
                 lastMonsterMovement = startTime;
             }
 
+
+
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
 
@@ -92,5 +77,5 @@ public class Game {
 
 
         }
-    }*/
+    }
 }

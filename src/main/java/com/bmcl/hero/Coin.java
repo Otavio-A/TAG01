@@ -11,7 +11,7 @@ public class Coin extends Element {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#01579B"));
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "*");
     }
