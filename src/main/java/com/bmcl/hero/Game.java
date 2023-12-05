@@ -21,10 +21,10 @@ public class Game {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
 
-        arena = new Arena(width, heigt);
+        arena = new Arena(width, heigt, this); //pro Jump() em Arena
     }
 
-    private void draw() throws IOException {
+    public void draw() throws IOException { // Isso estava como Private antes
         screen.clear();
         arena.draw(screen.newTextGraphics());
         screen.refresh();

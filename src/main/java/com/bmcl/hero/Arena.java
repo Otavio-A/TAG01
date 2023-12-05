@@ -7,6 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +22,7 @@ public class Arena {
     //private final List<Coin> coins;
     private final List<Monster> monsters;
 
-    public Arena(int width, int height) {
+    public Arena(int width, int height, Game gameInstance) {
         this.width = width;
         this.height = height;
 
@@ -29,6 +30,8 @@ public class Arena {
         this.walls = createWalls();
         //this.coins = createCoins();
         this.monsters = createMonsters();
+
+        this.gameInstance = gameInstance; //PARA O JUMP()
     }
 
     private List<Coin> createCoins() {
@@ -80,7 +83,7 @@ public class Arena {
     }
 
     public void processKey(KeyStroke key) {
-        if (key.getKeyType() == KeyType.ArrowUp) moveHero(hero.moveUp());
+        if (key.getKeyType() == KeyType.ArrowUp) jump();
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
         if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
@@ -176,5 +179,25 @@ public class Arena {
             if (wall.getPosition().equals(position)) return false;
 
         return true;
+    }
+
+
+    /*
+    JUMP VERSÃO 1 | Desenha todo o movimento do Hero, provavelmente deveria ser um observer pattern
+     */
+    private final Game gameInstance;
+    public void jump(){
+        try {
+            for(int i = 0; i < 4; i++) {
+                moveHero(hero.moveUp());
+                gameInstance.draw();
+            }
+            for(int i = 0; i < 4; i++) {
+                moveHero(hero.moveDown());
+                gameInstance.draw();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error jump()");
+        }
     }
 }
