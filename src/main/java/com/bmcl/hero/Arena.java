@@ -25,7 +25,7 @@ public class Arena {
         this.width = width;
         this.height = height;
 
-        hero = new Hero(width / 2, height / 2);
+        hero = new Hero(width / 2, height - 2);
         this.walls = createWalls();
         //this.coins = createCoins();
         this.monsters = createMonsters();
@@ -103,9 +103,33 @@ public class Arena {
     public void moveMonsters() {
         for (Monster monster : monsters) {
             Position monsterPosition = monster.move();
+
+
+
             if (canHeroMove(monsterPosition))
-                monster.setPosition(monsterPosition);
+                if(canMonsterMove(monsterPosition))
+                    monster.setPosition(monsterPosition);
         }
+    }
+
+    private boolean canMonsterMove(Position position) {
+        //Primeira plat
+        if (position.getY() == 5 && position.getX()<35 ) return false;
+        if (position.getY() == 5 && position.getX()>=45 ) return false;
+
+        //Segunda plat
+        if (position.getY() == 11 && position.getX()<7 ) return false;
+        if (position.getY() == 10 && position.getX()>23 && position.getX()<59 ) return false;
+        if (position.getY() == 11 && position.getX()>=73 ) return false;
+
+        //terceira plat
+        if (position.getY() == 15 && position.getX()<30 ) return false;
+        if (position.getY() == 15 && position.getX()>=50 ) return false;
+
+        //POW
+        if (position.getY() == 15 && position.getX()>38 && position.getX()<41 ) return false;
+
+        return true;
     }
 
     /*private void retrieveCoins() {
@@ -122,11 +146,30 @@ public class Arena {
         }
     }
 
+
+
+
     private boolean canHeroMove(Position position) {
-        if (position.getX() < 0) return false;
-        if (position.getX() > width - 1) return false;
-        if (position.getY() < 0) return false;
-        if (position.getY() > height - 1) return false;
+        //if (position.getX() <= -1) return false;
+        //if (position.getX() > width - 1) return false;
+        //if (position.getY() <= -1) return false;
+        //if (position.getY() > height - 1) return false;
+
+        //Primeira plat
+        if (position.getY() == 5 && position.getX()<35 ) return false;
+        if (position.getY() == 5 && position.getX()>=45 ) return false;
+
+        //Segunda plat
+        if (position.getY() == 11 && position.getX()<7 ) return false;
+        if (position.getY() == 10 && position.getX()>23 && position.getX()<59 ) return false;
+        if (position.getY() == 11 && position.getX()>=73 ) return false;
+
+        //terceira plat
+        if (position.getY() == 15 && position.getX()<30 ) return false;
+        if (position.getY() == 15 && position.getX()>=50 ) return false;
+
+        //POW
+        if (position.getY() == 15 && position.getX()>38 && position.getX()<41 ) return false;
 
 
         for (Wall wall : walls)
