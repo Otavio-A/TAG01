@@ -198,8 +198,32 @@ public class Arena {
     /*
     JUMP VERSÃO 1 | Desenha todo o movimento do Hero, provavelmente deveria ser um observer pattern
      */
+    class jumps extends TimerTask {
+        public void run() {
+
+            try {
+                moveHero(hero.moveUp());
+                Thread.sleep(50);
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                gameInstance.draw();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     private final Game gameInstance;
-    public void jump(){
+    public void jump() {
+        Timer timer = new Timer();
+        for(int i = 0; i < 4; i++) {
+            timer.schedule(new jumps(), 1);
+        }
+
+        /*
+        }
         try {
             for(int i = 0; i < 4; i++) {
                 moveHero(hero.moveUp());
@@ -211,6 +235,14 @@ public class Arena {
             }
         } catch (IOException e) {
             throw new RuntimeException("Error jump()");
+        }*/
+
         }
+
+
+        // And From your main() method or any other method
+
+
     }
-}
+
+
