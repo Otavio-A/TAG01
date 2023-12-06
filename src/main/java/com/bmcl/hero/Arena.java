@@ -8,9 +8,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Arena {
     private final Hero hero;
@@ -42,11 +40,26 @@ public class Arena {
         return coins;
     }
 
+
+
     private List<Monster> createMonsters() {
         Random random = new Random();
         ArrayList<Monster> monsters = new ArrayList<>();
-        for (int i = 0; i < 5; i++)
-            monsters.add(new Monster(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
+        Timer timer = new Timer();
+        TimerTask myTask = new TimerTask() {
+
+            public void run() {
+                int counter=monsters.size();
+                if (counter != 5)
+                    if(counter % 2 == 0)
+                        monsters.add(new Monster(4, 2));
+                    else
+                        monsters.add(new Monster(77, 2));
+            }
+        };
+        timer.schedule(myTask, 2000, 2000);
+
+
         return monsters;
     }
 

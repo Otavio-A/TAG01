@@ -36,11 +36,8 @@ public class Game {
 
     //Exemplo basico sem controlo de velocidade
 
-
-
-
     public void run() throws IOException {
-        int FPS = 20;
+        int FPS = 144;
         int frameTime = 1000 / FPS;
         long lastMonsterMovement = 0;
 
