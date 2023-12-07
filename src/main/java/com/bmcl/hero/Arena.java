@@ -41,7 +41,6 @@ public class Arena {
     }
 
 
-
     private List<Monster> createMonsters() {
         Random random = new Random();
         ArrayList<Monster> monsters = new ArrayList<>();
@@ -49,9 +48,9 @@ public class Arena {
         TimerTask myTask = new TimerTask() {
 
             public void run() {
-                int counter=monsters.size();
+                int counter = monsters.size();
                 if (counter != 5)
-                    if(counter % 2 == 0)
+                    if (counter % 2 == 0)
                         monsters.add(new Monster(4, 2));
                     else
                         monsters.add(new Monster(77, 2));
@@ -121,29 +120,28 @@ public class Arena {
             Position monsterPosition = monster.move();
 
 
-
             if (canHeroMove(monsterPosition))
-                if(canMonsterMove(monsterPosition))
+                if (canMonsterMove(monsterPosition))
                     monster.setPosition(monsterPosition);
         }
     }
 
     private boolean canMonsterMove(Position position) {
         //Primeira plat
-        if (position.getY() == 5 && position.getX()<35 ) return false;
-        if (position.getY() == 5 && position.getX()>=45 ) return false;
+        if (position.getY() == 5 && position.getX() < 35) return false;
+        if (position.getY() == 5 && position.getX() >= 45) return false;
 
         //Segunda plat
-        if (position.getY() == 11 && position.getX()<7 ) return false;
-        if (position.getY() == 10 && position.getX()>23 && position.getX()<59 ) return false;
-        if (position.getY() == 11 && position.getX()>=73 ) return false;
+        if (position.getY() == 11 && position.getX() < 7) return false;
+        if (position.getY() == 10 && position.getX() > 23 && position.getX() < 59) return false;
+        if (position.getY() == 11 && position.getX() >= 73) return false;
 
         //terceira plat
-        if (position.getY() == 15 && position.getX()<30 ) return false;
-        if (position.getY() == 15 && position.getX()>=50 ) return false;
+        if (position.getY() == 15 && position.getX() < 30) return false;
+        if (position.getY() == 15 && position.getX() >= 50) return false;
 
         //POW
-        if (position.getY() == 15 && position.getX()>38 && position.getX()<41 ) return false;
+        if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
 
         return true;
     }
@@ -163,8 +161,6 @@ public class Arena {
     }
 
 
-
-
     private boolean canHeroMove(Position position) {
         //if (position.getX() <= -1) return false;
         //if (position.getX() > width - 1) return false;
@@ -172,20 +168,20 @@ public class Arena {
         //if (position.getY() > height - 1) return false;
 
         //Primeira plat
-        if (position.getY() == 5 && position.getX()<35 ) return false;
-        if (position.getY() == 5 && position.getX()>=45 ) return false;
+        if (position.getY() == 5 && position.getX() < 35) return false;
+        if (position.getY() == 5 && position.getX() >= 45) return false;
 
         //Segunda plat
-        if (position.getY() == 11 && position.getX()<7 ) return false;
-        if (position.getY() == 10 && position.getX()>23 && position.getX()<59 ) return false;
-        if (position.getY() == 11 && position.getX()>=73 ) return false;
+        if (position.getY() == 11 && position.getX() < 7) return false;
+        if (position.getY() == 10 && position.getX() > 23 && position.getX() < 59) return false;
+        if (position.getY() == 11 && position.getX() >= 73) return false;
 
         //terceira plat
-        if (position.getY() == 15 && position.getX()<30 ) return false;
-        if (position.getY() == 15 && position.getX()>=50 ) return false;
+        if (position.getY() == 15 && position.getX() < 30) return false;
+        if (position.getY() == 15 && position.getX() >= 50) return false;
 
         //POW
-        if (position.getY() == 15 && position.getX()>38 && position.getX()<41 ) return false;
+        if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
 
 
         for (Wall wall : walls)
@@ -196,8 +192,10 @@ public class Arena {
 
 
     /*
-    JUMP VERSÃO 1 | Desenha todo o movimento do Hero, provavelmente deveria ser um observer pattern
+    JUMP VERSÃO 2 | usando thread.sleep
      */
+
+
     class jumps extends TimerTask {
         public void run() {
 
@@ -215,34 +213,26 @@ public class Arena {
             }
         }
     }
-    private final Game gameInstance;
-    public void jump() {
-        Timer timer = new Timer();
-        for(int i = 0; i < 4; i++) {
-            timer.schedule(new jumps(), 1);
-        }
 
-        /*
-        }
+    private final Game gameInstance;
+
+    public void jump() {
         try {
-            for(int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 moveHero(hero.moveUp());
+                Thread.sleep(50);
                 gameInstance.draw();
             }
-            for(int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 moveHero(hero.moveDown());
+                Thread.sleep(50);
                 gameInstance.draw();
             }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException("Error jump()");
-        }*/
-
         }
-
-
-        // And From your main() method or any other method
-
-
     }
-
+}
 
