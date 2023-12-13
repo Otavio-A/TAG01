@@ -30,9 +30,7 @@ public class Game {
         screen.refresh();
     }
 
-    private void processKey(KeyStroke key) {
-        arena.processKey(key);
-    }
+
 
     //Exemplo basico sem controlo de velocidade
 
@@ -51,7 +49,7 @@ public class Game {
                     screen.close();
                 if (key.getKeyType() == KeyType.EOF)
                     break;
-                processKey(key);
+                arena.processKey(key);
 
             }
 

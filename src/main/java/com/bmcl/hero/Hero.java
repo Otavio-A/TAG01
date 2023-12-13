@@ -10,6 +10,16 @@ public class Hero extends Element {
         super(x, y);
     }
 
+    private boolean jumpState = false;
+
+    public boolean isJumpState() {
+        return jumpState;
+    }
+
+    public void setJumpState(boolean jumpState) {
+        this.jumpState = jumpState;
+    }
+
     public Position getPosition() {
         return position;
     }

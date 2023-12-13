@@ -166,11 +166,9 @@ public class Arena {
 
         if (!canBichoMove(position))return false;
 
-        if(isplat(position))
+        if(!isplat(position ) && hero.isJumpState())
         {
-            System.out.println("pepepopo");
-        }else {
-            System.out.println("pepepopo2");
+            System.out.println("jumping");
         }
 
         return true;
@@ -181,16 +179,20 @@ public class Arena {
     private final Game gameInstance;
 
     public void jump() {
+
         try {
+            hero.setJumpState(true);
             for (int i = 0; i < 6; i++) {
                 moveHero(hero.moveUp());
                 Thread.sleep(30);
                 gameInstance.draw();
             }
+        hero.setJumpState(false);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException("Error jump()");
         }
+
     }
 }
