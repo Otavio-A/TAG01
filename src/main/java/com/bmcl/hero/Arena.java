@@ -17,7 +17,6 @@ public class Arena {
     private int height;
 
     private List<Wall> walls;
-    //private final List<Coin> coins;
     private final List<Monster> monsters;
 
     public Arena(int width, int height, Game gameInstance) {
@@ -26,24 +25,14 @@ public class Arena {
 
         hero = new Hero(width / 2, height - 2);
         this.walls = createWalls();
-        //this.coins = createCoins();
+
         this.monsters = createMonsters();
 
         this.gameInstance = gameInstance; //PARA O JUMP()
     }
 
-    private List<Coin> createCoins() {
-        Random random = new Random();
-        ArrayList<Coin> coins = new ArrayList<>();
-        for (int i = 0; i < 5; i++)
-            coins.add(new Coin(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
-        return coins;
-    }
-
-
     private List<Monster> createMonsters() {
-        Random random = new Random();
-        ArrayList<Monster> monsters = new ArrayList<>();
+       ArrayList<Monster> monsters = new ArrayList<>();
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {
 
@@ -78,19 +67,12 @@ public class Arena {
         return walls;
     }
 
+
     public void draw(TextGraphics graphics) {
-
-
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
-
-
         hero.draw(graphics);
-
         for (Wall wall : walls) wall.draw(graphics);
-
-        //for (Coin coin : coins) coin.draw(graphics);
-
         for (Monster monster : monsters) monster.draw(graphics);
     }
 
@@ -99,11 +81,7 @@ public class Arena {
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
         if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
-
-        //retrieveCoins();
-
         verifyMonsterCollisions();
-
     }
 
 
@@ -119,40 +97,41 @@ public class Arena {
         for (Monster monster : monsters) {
             Position monsterPosition = monster.move();
 
-
-            if (canHeroMove(monsterPosition))
                 if (canMonsterMove(monsterPosition))
                     monster.setPosition(monsterPosition);
         }
     }
 
     private boolean canMonsterMove(Position position) {
-        //Primeira plat
-        if (position.getY() == 5 && position.getX() < 35) return false;
-        if (position.getY() == 5 && position.getX() >= 45) return false;
-
-        //Segunda plat
-        if (position.getY() == 11 && position.getX() < 7) return false;
-        if (position.getY() == 10 && position.getX() > 23 && position.getX() < 59) return false;
-        if (position.getY() == 11 && position.getX() >= 73) return false;
-
-        //terceira plat
-        if (position.getY() == 15 && position.getX() < 30) return false;
-        if (position.getY() == 15 && position.getX() >= 50) return false;
-
-        //POW
-        if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
-
+        if (!canBichoMove(position))return false;
         return true;
     }
 
-    /*private void retrieveCoins() {
-        for (Coin coin : coins)
-            if (hero.getPosition().equals(coin.getPosition())) {
-                coins.remove(coin);
-                break;
-            }
-    }*/
+    private boolean isplat(Position position) {
+        //Primeira plat
+        if (position.getY() == 4 && position.getX() < 35) return true;
+        if (position.getY() == 4 && position.getX() >= 45) return true;
+
+        //Segunda plat
+        if (position.getY() == 10 && position.getX() < 7) return true;
+        if (position.getY() == 9 && position.getX() > 23 && position.getX() < 59) return true;
+        if (position.getY() == 10 && position.getX() >= 73) return true;
+
+        //terceira plat
+        if (position.getY() == 14 && position.getX() < 30) return true;
+        if (position.getY() == 14 && position.getX() >= 50) return true;
+
+        //POW
+        if (position.getY() == 14 && position.getX() > 38 && position.getX() < 41) return true;
+
+
+        //CHAO
+        if (position.getY() == 19 ) return true;
+
+        return false;
+    }
+
+
 
     public void moveHero(Position position) {
         if (canHeroMove(position)) {
@@ -160,13 +139,7 @@ public class Arena {
         }
     }
 
-
-    private boolean canHeroMove(Position position) {
-        //if (position.getX() <= -1) return false;
-        //if (position.getX() > width - 1) return false;
-        //if (position.getY() <= -1) return false;
-        //if (position.getY() > height - 1) return false;
-
+    private boolean canBichoMove(Position position) {
         //Primeira plat
         if (position.getY() == 5 && position.getX() < 35) return false;
         if (position.getY() == 5 && position.getX() >= 45) return false;
@@ -183,49 +156,35 @@ public class Arena {
         //POW
         if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
 
-
         for (Wall wall : walls)
             if (wall.getPosition().equals(position)) return false;
+         return true;
+    }
+
+
+    private boolean canHeroMove(Position position) {
+
+        if (!canBichoMove(position))return false;
+
+        if(isplat(position))
+        {
+            System.out.println("pepepopo");
+        }else {
+            System.out.println("pepepopo2");
+        }
 
         return true;
     }
-
-
     /*
     JUMP VERSÃO 2 | usando thread.sleep
      */
-
-
-    class jumps extends TimerTask {
-        public void run() {
-
-            try {
-                moveHero(hero.moveUp());
-                Thread.sleep(50);
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                gameInstance.draw();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
     private final Game gameInstance;
 
     public void jump() {
         try {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 6; i++) {
                 moveHero(hero.moveUp());
-                Thread.sleep(50);
-                gameInstance.draw();
-            }
-            for (int i = 0; i < 4; i++) {
-                moveHero(hero.moveDown());
-                Thread.sleep(50);
+                Thread.sleep(30);
                 gameInstance.draw();
             }
         } catch (InterruptedException e) {
@@ -235,4 +194,3 @@ public class Arena {
         }
     }
 }
-
