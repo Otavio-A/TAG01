@@ -12,6 +12,7 @@ Luigi
 - D move right
 - W Jump
 
+![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.txt)
 
 - Members
   - Otávio A. Araújo A042508@umaia.pt
