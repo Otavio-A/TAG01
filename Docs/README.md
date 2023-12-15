@@ -9,6 +9,7 @@ You can defeat the monsters by jumping on the floor bellow them, tripping the mo
 The level ends when all monsters are defeated.
 
 Controls:
+
 Mario
 - Left arrow Move Left
 - Right arrow Move Right
@@ -19,8 +20,13 @@ Luigi
 - D move right
 - W Jump
 
+Ex1
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.png)
+
+Ex2
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/IMG_0935.jpeg)
+
+Ex3
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/MockNovo.png)
 
 
