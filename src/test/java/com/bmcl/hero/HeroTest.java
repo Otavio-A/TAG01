@@ -33,4 +33,5 @@ class HeroTest {
         assertEquals(hero.getPosition(), expected);
     }
 
+
 }

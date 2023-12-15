@@ -162,7 +162,7 @@ public class Arena {
         }
     }
 
-    private boolean canBichoMove(Position position) {
+    public boolean canBichoMove(Position position) {
         //Primeira plat
         if (position.getY() == 5 && position.getX() < 35) return false;
         if (position.getY() == 5 && position.getX() >= 45) return false;
