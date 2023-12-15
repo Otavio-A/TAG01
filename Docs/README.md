@@ -21,6 +21,7 @@ Luigi
 
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.png)
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/IMG_0935.jpeg)
+![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/MockNovo.png)
 
 
 
