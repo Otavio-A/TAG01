@@ -107,7 +107,7 @@ public class Arena {
         return true;
     }
 
-    private boolean isplat(Position position) {
+    public boolean isplat(Position position) {
         //Primeira plat
         if (position.getY() == 4 && position.getX() < 35) return true;
         if (position.getY() == 4 && position.getX() >= 45) return true;
@@ -131,6 +131,8 @@ public class Arena {
         return false;
     }
 
+
+
     private boolean hitPlat(Position position) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
         //Primeira plat
         if (position.getY() == 6 && position.getX() < 35 && hero.isJumpState()) return true;
@@ -150,6 +152,7 @@ public class Arena {
 
         return false;
     }
+
 
 
 
@@ -214,5 +217,12 @@ public class Arena {
             throw new RuntimeException("Error jump()");
         }
 
+    }
+    public void fall(){
+        moveHero(hero.moveDown());
+    }
+
+    public boolean isHeroJumping() {
+        return hero.isJumpState();
     }
 }

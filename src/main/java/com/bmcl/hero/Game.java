@@ -53,6 +53,9 @@ public class Game {
 
             }
 
+            if (startTime > 500 && !arena.isHeroJumping()){
+                arena.fall();
+            }
 
             if (startTime - lastMonsterMovement > 500) {
                 arena.moveMonsters();
