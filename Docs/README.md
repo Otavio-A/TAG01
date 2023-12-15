@@ -32,7 +32,7 @@ Luigi
   - Gonçalo Caridade Ribeiro A043540@umaia.pt
 
 ### IMPLEMENTED FEATURES
-
+- \*\*Spawning Monsters\*\* - Spawning the monsters in the tubes.
 - \*\*Jumping\*\* - The game character will jump when the up arrow key is pressed.
 
 
@@ -64,4 +64,7 @@ Luigi
 
 
 ### SELF-EVALUATION
+  - Otávio A. Araújo A042508@umaia.pt         34%
+  - Diogo Soares Gonçalves A042244@umaia.pt   33%
+  - Gonçalo Caridade Ribeiro A043540@umaia.pt 33%
 
