@@ -53,7 +53,7 @@ public class Game {
 
             }
 
-            if (startTime > 500 && !arena.isHeroJumping()){
+            if (!arena.isHeroJumping()){
                 arena.fall();
             }
 
