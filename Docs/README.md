@@ -57,7 +57,7 @@ Luigi
 ------
 
 #### DATA CLASS
-
+![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Uml/Mamamia.png)
 
 
 ### TESTING
