@@ -37,9 +37,8 @@ public class Arena {
         TimerTask myTask = new TimerTask() {
 
             public void run() {
-                int counter = monsters.size();
-                if (counter != 5)
-                    if (counter % 2 == 0)
+                if (monsters.size() != 5)
+                    if (monsters.size() % 2 == 0)
                         monsters.add(new Monster(4, 2));
                     else
                         monsters.add(new Monster(77, 2));
@@ -82,21 +81,18 @@ public class Arena {
         if (key.getKeyType() == KeyType.ArrowUp) jump();
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
-        if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
+       // if (key.getKeyType() == KeyType.ArrowDown));
 
         verifyMonsterCollisions();
     }
 
 
     public void verifyMonsterCollisions() {
+        monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit());
         for (Monster monster : monsters)
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
                 System.exit(0);
-            }
-        for (Monster monster : monsters)
-            if (hero.getPosition().equals(monster.getPosition()) && monster.isHit()) {
-                monsters.remove(monster);
             }
     }
 
@@ -188,7 +184,16 @@ public class Arena {
         //POW
         if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
 
-        if (position.getY()+1 == 21) return false;
+        if (position.getY() == 20) return false;
+
+        return true;
+    }
+
+
+
+    private boolean canHeroMove(Position position) {
+
+        if (!canBichoMove(position))return false;
 
         if (position.getX() > 80)
         {
@@ -202,18 +207,9 @@ public class Arena {
             return false;
         }
 
-         return true;
-    }
-
-
-
-    private boolean canHeroMove(Position position) {
-
-        if (!canBichoMove(position))return false;
-
         if(!isplat(position) && hero.isJumpState())
         {
-            System.out.println("jumping");
+            //System.out.println("jumping");
         }
 
         return true;
