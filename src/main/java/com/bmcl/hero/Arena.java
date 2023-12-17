@@ -45,13 +45,14 @@ public class Arena {
                         monsters.add(new Monster(77, 2));
             }
         };
-        timer.schedule(myTask, 2000, 2000);
 
+        timer.schedule(myTask, 1000, 4000);
 
         return monsters;
     }
 
     private List<Wall> createWalls() {
+
         List<Wall> walls = new ArrayList<>();
 
         for (int c = 0; c < width; c++) {
@@ -77,10 +78,12 @@ public class Arena {
     }
 
     public void processKey(KeyStroke key) {
+
         if (key.getKeyType() == KeyType.ArrowUp) jump();
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
         if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
+
         verifyMonsterCollisions();
     }
 
@@ -104,9 +107,9 @@ public class Arena {
     public void moveMonsters() {
         for (Monster monster : monsters) {
             Position monsterPosition = monster.move();
-
-                if (canMonsterMove(monsterPosition))
-                    monster.setPosition(monsterPosition);
+            if (canMonsterMove(monsterPosition)) {
+                monster.setPosition(monsterPosition);
+            }
         }
     }
 
@@ -132,13 +135,11 @@ public class Arena {
         //POW
         if (position.getY() == 14 && position.getX() > 38 && position.getX() < 41) return true;
 
-
         //CHAO
         if (position.getY() == 19 ) return true;
 
         return false;
     }
-
 
 
     private boolean hitPlat(Position position) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
@@ -161,14 +162,18 @@ public class Arena {
         return false;
     }
 
-
-
-
     public void moveHero(Position position) {
         if (canHeroMove(position)) {
             hero.setPosition(position);
         }
     }
+
+    public void moveMonster(Position position,Monster monster) {
+        if (canMonsterMove(position)) {
+            monster.setPosition(position);
+        }
+    }
+
 
     public boolean canBichoMove(Position position) {
         //Primeira plat
@@ -197,7 +202,7 @@ public class Arena {
 
         if (!canBichoMove(position))return false;
 
-        if(!isplat(position ) && hero.isJumpState())
+        if(!isplat(position) && hero.isJumpState())
         {
             System.out.println("jumping");
         }
@@ -226,7 +231,14 @@ public class Arena {
         }
 
     }
-    public void fall(){
+
+    public void Monsterfall(){
+        for (Monster monster : monsters) {
+            moveMonster(monster.moveDown(),monster);
+        }
+    }
+
+    public void Herofall(){
         moveHero(hero.moveDown());
     }
 

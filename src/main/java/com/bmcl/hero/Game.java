@@ -53,8 +53,10 @@ public class Game {
 
             }
 
+            arena.Monsterfall();
+
             if (!arena.isHeroJumping()){
-                arena.fall();
+                arena.Herofall();
             }
 
             if (startTime - lastMonsterMovement > 500) {
