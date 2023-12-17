@@ -57,12 +57,12 @@ public class Arena {
 
         for (int c = 0; c < width; c++) {
             walls.add(new Wall(c, 0));
-            walls.add(new Wall(c, height - 1));
+            walls.add(new Wall(c, height ));
         }
 
         for (int r = 1; r < height - 1; r++) {
             walls.add(new Wall(0, r));
-            walls.add(new Wall(width - 1, r));
+            walls.add(new Wall(width , r));
         }
 
         return walls;
@@ -96,12 +96,8 @@ public class Arena {
             }
         for (Monster monster : monsters)
             if (hero.getPosition().equals(monster.getPosition()) && monster.isHit()) {
-                killMonster(monster);
+                monsters.remove(monster);
             }
-    }
-
-    private void killMonster(Monster monster){
-        monsters.remove(monster);
     }
 
     public void moveMonsters() {
@@ -192,10 +188,23 @@ public class Arena {
         //POW
         if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
 
-        for (Wall wall : walls)
-            if (wall.getPosition().equals(position)) return false;
+        if (position.getY()+1 == 21) return false;
+
+        if (position.getX() > 80)
+        {
+            hero.setPosition(new Position(0, position.getY()));
+            return false;
+        }
+
+        if (position.getX() < 0 )
+        {
+            hero.setPosition(new Position(80, position.getY()));
+            return false;
+        }
+
          return true;
     }
+
 
 
     private boolean canHeroMove(Position position) {
