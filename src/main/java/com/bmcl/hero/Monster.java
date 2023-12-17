@@ -7,6 +7,9 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.Random;
 
 public class Monster extends Element {
+
+    private boolean isHit = false;
+
     public Monster(int x, int y) {
         super(x, y);
     }
@@ -30,5 +33,13 @@ public class Monster extends Element {
                 return new Position(position.getX() - 1, position.getY());
         }
         return new Position(position.getX(), position.getY());
+    }
+
+    public boolean isHit() {
+        return isHit;
+    }
+
+    public void setHit(boolean hit) {
+        isHit = hit;
     }
 }

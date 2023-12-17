@@ -87,10 +87,18 @@ public class Arena {
 
     public void verifyMonsterCollisions() {
         for (Monster monster : monsters)
-            if (hero.getPosition().equals(monster.getPosition())) {
+            if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
                 System.exit(0);
             }
+        for (Monster monster : monsters)
+            if (hero.getPosition().equals(monster.getPosition()) && monster.isHit()) {
+                killMonster(monster);
+            }
+    }
+
+    private void killMonster(Monster monster){
+        monsters.remove(monster);
     }
 
     public void moveMonsters() {
