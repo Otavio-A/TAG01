@@ -29,7 +29,7 @@ public class Monster extends Element {
             return new Position(position.getX() - 1, position.getY());
     }
 
-<<<<<<< HEAD
+
     public boolean isHit() {
         return isHit;
     }
@@ -37,12 +37,11 @@ public class Monster extends Element {
     public void setHit(boolean hit) {
         isHit = hit;
     }
-=======
+
     public Position moveDown() {
         return new Position(position.getX(), position.getY() + 1);
     }
 
 
 
->>>>>>> efb349a5762c08a9b2b49965f1b2ee8cc20f8d17
 }
