@@ -73,7 +73,16 @@ public class Arena {
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         hero.draw(graphics);
         for (Wall wall : walls) wall.draw(graphics);
-        for (Monster monster : monsters) monster.draw(graphics);
+
+        for (Monster monster : monsters){
+            if(monster.isHit()){
+                monster.drawhit(graphics);
+            }
+            else
+            {
+                monster.draw(graphics);
+            }
+        }
     }
 
     public void processKey(KeyStroke key) {
