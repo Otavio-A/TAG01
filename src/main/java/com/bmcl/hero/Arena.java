@@ -99,9 +99,10 @@ public class Arena {
     public void moveMonsters() {
         for (Monster monster : monsters) {
             Position monsterPosition = monster.move();
+            if(!monster.isHit()){
             if (canMonsterMove(monsterPosition,monster)) {
                 monster.setPosition(monsterPosition);
-            }
+            }}
         }
     }
 

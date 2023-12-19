@@ -29,6 +29,12 @@ public class Monster extends Element {
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "M");
     }
 
+    public void drawhit(TextGraphics graphics) {
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "W");
+    }
+
 
     public Position move() {
         if (direcao)
