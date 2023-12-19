@@ -10,8 +10,16 @@ public class Monster extends Element {
 
     private boolean isHit = false;
 
+
+    private boolean direcao = false; //false == esquerda , true == direita
+
     public Monster(int x, int y) {
         super(x, y);
+    }
+
+    public Monster(int x, int y , boolean direcao) {
+        super(x, y);
+        this.direcao = direcao;
     }
 
     @Override
@@ -23,7 +31,7 @@ public class Monster extends Element {
 
 
     public Position move() {
-        if (position.getX()<40)
+        if (direcao)
             return new Position(position.getX() + 1, position.getY());
         else
             return new Position(position.getX() - 1, position.getY());
@@ -33,6 +41,7 @@ public class Monster extends Element {
     public boolean isHit() {
         return isHit;
     }
+
 
     public void setHit(boolean hit) {
         isHit = hit;
