@@ -163,28 +163,23 @@ public class Arena {
     }
 
 
-    private boolean hitPlat(Position position) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
+    private void hitPlat(Position position) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
         //Primeira plat
-        if (position.getY() == 6 && position.getX() < 35 && hero.isJumpState()) {
-            //TODO metodo para matar o bicho
-            applyHit();
-            return true;
-        }
-        if (position.getY() == 6 && position.getX() >= 45 && hero.isJumpState()) return true;
+        if (position.getY() == 6 && position.getX() < 35 && hero.isJumpState()) applyHit();
+        if (position.getY() == 6 && position.getX() >= 45 && hero.isJumpState()) applyHit();
 
         //Segunda plat
-        if (position.getY() == 12 && position.getX() < 7 && hero.isJumpState()) return true;
-        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) return true;
-        if (position.getY() == 12 && position.getX() >= 73 && hero.isJumpState()) return true;
+        if (position.getY() == 12 && position.getX() < 7 && hero.isJumpState()) applyHit();
+        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) applyHit();
+        if (position.getY() == 12 && position.getX() >= 73 && hero.isJumpState()) applyHit();
 
         //terceira plat
-        if (position.getY() == 16 && position.getX() < 30 && hero.isJumpState()) return true;
-        if (position.getY() == 16 && position.getX() >= 50 && hero.isJumpState()) return true;
+        if (position.getY() == 16 && position.getX() < 30 && hero.isJumpState()) applyHit();
+        if (position.getY() == 16 && position.getX() >= 50 && hero.isJumpState()) applyHit();
 
         //POW
-        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && hero.isJumpState()) return true;
-
-        return false;
+        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && hero.isJumpState())
+        {powBlock();}
     }
 
     private void applyHit(){
@@ -193,6 +188,12 @@ public class Arena {
             {
                 monster1.setHit(true);
             }
+    }
+    private void powBlock(){
+        for (Monster monster1 : monsters)
+            if (isplat(monster1.getPosition()))
+                monster1.setHit(true);
+
     }
 
     public void moveHero(Position position) {
