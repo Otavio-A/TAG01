@@ -108,16 +108,31 @@ public class Arena {
     private boolean canMonsterMove(Position position,Monster monster) {
         if (!canBichoMove(position))return false;
 
+        if (position.getX() == 78 && position.getY() == 19 ) //baixo direita
+        {
+            monster.setPosition(new Position(4, 2));
+            return  false;
+        }
+
+        if (position.getX() == 2 && position.getY() == 19 )//baixo esquerda
+        {
+            monster.setPosition(new Position(77, 2));
+            return  false;
+        }
+
+
+
         if (position.getX() > 79)
         {
             monster.setPosition(new Position(0, position.getY()));
-            return false;
+            return  false;
+
         }
 
         if (position.getX() < 1 )
         {
             monster.setPosition(new Position(80, position.getY()));
-            return false;
+            return  false;
         }
 
         return true;
@@ -205,9 +220,6 @@ public class Arena {
 
 
     private boolean canHeroMove(Position position) {
-
-
-
         if (!canBichoMove(position))return false;
 
         if (position.getX() > 80)
