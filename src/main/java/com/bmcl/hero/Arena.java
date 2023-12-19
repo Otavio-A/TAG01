@@ -39,9 +39,9 @@ public class Arena {
             public void run() {
                 if (monsters.size() != 5)
                     if (monsters.size() % 2 == 0)
-                        monsters.add(new Monster(4, 2));
+                        monsters.add(new Monster(4, 2 ,true));
                     else
-                        monsters.add(new Monster(77, 2));
+                        monsters.add(new Monster(77, 2 ,false));
             }
         };
 
@@ -99,14 +99,27 @@ public class Arena {
     public void moveMonsters() {
         for (Monster monster : monsters) {
             Position monsterPosition = monster.move();
-            if (canMonsterMove(monsterPosition)) {
+            if (canMonsterMove(monsterPosition,monster)) {
                 monster.setPosition(monsterPosition);
             }
         }
     }
 
-    private boolean canMonsterMove(Position position) {
+    private boolean canMonsterMove(Position position,Monster monster) {
         if (!canBichoMove(position))return false;
+
+        if (position.getX() > 79)
+        {
+            monster.setPosition(new Position(0, position.getY()));
+            return false;
+        }
+
+        if (position.getX() < 1 )
+        {
+            monster.setPosition(new Position(80, position.getY()));
+            return false;
+        }
+
         return true;
     }
 
@@ -161,7 +174,7 @@ public class Arena {
     }
 
     public void moveMonster(Position position,Monster monster) {
-        if (canMonsterMove(position)) {
+        if (canMonsterMove(position, monster)) {
             monster.setPosition(position);
         }
     }
@@ -193,6 +206,8 @@ public class Arena {
 
     private boolean canHeroMove(Position position) {
 
+
+
         if (!canBichoMove(position))return false;
 
         if (position.getX() > 80)
@@ -206,6 +221,7 @@ public class Arena {
             hero.setPosition(new Position(80, position.getY()));
             return false;
         }
+
 
         if(!isplat(position) && hero.isJumpState())
         {
