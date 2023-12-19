@@ -158,7 +158,7 @@ public class Arena {
 
         //Segunda plat
         if (position.getY() == 12 && position.getX() < 7 && hero.isJumpState()) return true;
-        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) return true;
+        if (position.get Y() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) return true;
         if (position.getY() == 12 && position.getX() >= 73 && hero.isJumpState()) return true;
 
         //terceira plat
