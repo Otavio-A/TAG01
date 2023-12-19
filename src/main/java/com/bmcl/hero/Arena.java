@@ -78,7 +78,7 @@ public class Arena {
 
     public void processKey(KeyStroke key) {
 
-        if (key.getKeyType() == KeyType.ArrowUp) jump();
+        if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump();
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
        // if (key.getKeyType() == KeyType.ArrowDown));
@@ -136,20 +136,20 @@ public class Arena {
 
     private boolean hitPlat(Position position) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
         //Primeira plat
-        if (position.getY() == 6 && position.getX() < 35 && hero.isJumpState()) return true;
-        if (position.getY() == 6 && position.getX() >= 45 && hero.isJumpState()) return true;
+        if (position.getY() == 6 && position.getX() < 35 && hero.isJumpState()) System.out.println("pulei");;
+        if (position.getY() == 6 && position.getX() >= 45 && hero.isJumpState()) System.out.println("pulei");
 
         //Segunda plat
-        if (position.getY() == 12 && position.getX() < 7 && hero.isJumpState()) return true;
-        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) return true;
-        if (position.getY() == 12 && position.getX() >= 73 && hero.isJumpState()) return true;
+        if (position.getY() == 12 && position.getX() < 7 && hero.isJumpState()) System.out.println("pulei");
+        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) System.out.println("pulei");
+        if (position.getY() == 12 && position.getX() >= 73 && hero.isJumpState()) System.out.println("pulei");
 
         //terceira plat
-        if (position.getY() == 16 && position.getX() < 30 && hero.isJumpState()) return true;
-        if (position.getY() == 16 && position.getX() >= 50 && hero.isJumpState()) return true;
+        if (position.getY() == 16 && position.getX() < 30 && hero.isJumpState()) System.out.println("pulei");
+        if (position.getY() == 16 && position.getX() >= 50 && hero.isJumpState()) System.out.println("pulei");
 
         //POW
-        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && hero.isJumpState()) return true;
+        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && hero.isJumpState()) System.out.println("pulei");
 
         return false;
     }
@@ -227,6 +227,7 @@ public class Arena {
                 moveHero(hero.moveUp());
                 Thread.sleep(30);
                 gameInstance.draw();
+                hitPlat(hero.getPosition());
             }
         hero.setJumpState(false);
         } catch (InterruptedException e) {
