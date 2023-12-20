@@ -12,6 +12,7 @@ import java.util.*;
 
 public class Arena {
     private final Hero hero;
+    private final Luigi luigi;
 
     private int width;
     private int height;
@@ -24,6 +25,7 @@ public class Arena {
         this.height = height;
 
         hero = new Hero(width / 2, height - 2);
+        luigi = new Luigi(width / 2, height - 2);
         this.walls = createWalls();
 
         this.monsters = createMonsters();
@@ -72,6 +74,7 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         hero.draw(graphics);
+        luigi.draw(graphics);
         for (Wall wall : walls) wall.draw(graphics);
 
         for (Monster monster : monsters){
@@ -87,11 +90,25 @@ public class Arena {
 
     public void processKey(KeyStroke key) {
 
+        //verificar se key está null
+        if (key == null) {
+            return;
+        }
+
         if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump();
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
-       // if (key.getKeyType() == KeyType.ArrowDown));
 
+        Character keyChar = key.getCharacter(); 
+        if (key.getKeyType() == KeyType.Character && keyChar != null) {
+            if (keyChar == 'a') {
+                moveLuigi(luigi.moveLeft());
+            } else if (keyChar == 'd') {
+                moveLuigi(luigi.moveRight());
+            }
+        }
+
+       // if (key.getKeyType() == KeyType.ArrowDown));
         verifyMonsterCollisions();
     }
 
@@ -208,6 +225,12 @@ public class Arena {
     public void moveHero(Position position) {
         if (canHeroMove(position)) {
             hero.setPosition(position);
+        }
+    }
+
+    public void moveLuigi(Position position) {
+        if (canHeroMove(position)) {
+            luigi.setPosition(position);
         }
     }
 
