@@ -3,12 +3,14 @@ package com.bmcl.hero;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.plaf.basic.BasicDesktopIconUI;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArenaTest {
     Hero hero = new Hero(34,19);
+    Luigi luigi = new Luigi(35,24);
     Game game;
 
     {
@@ -32,6 +34,13 @@ class ArenaTest {
     void heroMoveWall(){
         Position badPosition = new Position(15, 20);
         hero.setPosition(badPosition);
+        assertFalse(arena.canBichoMove(monster.getPosition()));
+    }
+
+    @Test
+    void luigiMoveWall(){
+        Position badPosition = new Position(20,15);
+        luigi.setPosition(badPosition);
         assertFalse(arena.canBichoMove(monster.getPosition()));
     }
 
