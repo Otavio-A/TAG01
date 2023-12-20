@@ -99,7 +99,9 @@ public class Arena {
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
 
-        Character keyChar = key.getCharacter(); 
+        Character keyChar = key.getCharacter();
+        if (key.getKeyType() == KeyType.Character && keyChar != null && keyChar == 'w' && isplat(luigi.getPosition())) saltaLuigi();
+
         if (key.getKeyType() == KeyType.Character && keyChar != null) {
             if (keyChar == 'a') {
                 moveLuigi(luigi.moveLeft());
@@ -120,6 +122,7 @@ public class Arena {
                 System.out.println("You died!");
                 System.exit(0);
             }
+        
     }
 
     public void moveMonsters() {
@@ -312,6 +315,26 @@ public class Arena {
 
     }
 
+    public void saltaLuigi() {
+
+        try {
+            luigi.setJumpState(true);
+            for (int i = 0; i < 6; i++) {
+                moveLuigi(luigi.moveUp());
+                Thread.sleep(30);
+                gameInstance.draw();
+                hitPlat(luigi.getPosition());
+
+            }
+            luigi.setJumpState(false);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error jump()");
+        }
+
+    }
+
     public void Monsterfall(){
         for (Monster monster : monsters) {
             moveMonster(monster.moveDown(),monster);
@@ -320,9 +343,14 @@ public class Arena {
 
     public void Herofall(){
         moveHero(hero.moveDown());
+        moveLuigi(luigi.moveDown());
     }
 
     public boolean isHeroJumping() {
         return hero.isJumpState();
+    }
+
+    public boolean isLuigiJumping() {
+        return luigi.isJumpState();
     }
 }
