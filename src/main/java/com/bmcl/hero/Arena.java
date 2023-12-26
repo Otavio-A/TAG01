@@ -12,7 +12,7 @@ import java.util.*;
 
 public class Arena {
     private final Hero hero;
-    private final Luigi luigi;
+    private final Hero luigi;
 
     private int width;
     private int height;
@@ -25,7 +25,7 @@ public class Arena {
         this.height = height;
 
         hero = new Hero(width / 2, height - 2);
-        luigi = new Luigi(width / 2, height - 2);
+        luigi = new Hero(width / 2, height - 2);
         this.walls = createWalls();
 
         this.monsters = createMonsters();
@@ -95,18 +95,22 @@ public class Arena {
             return;
         }
 
-        if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump();
-        if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
-        if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
+        if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump(hero);
+        if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight(), hero);
+        if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft(), hero);
 
         Character keyChar = key.getCharacter();
-        if (key.getKeyType() == KeyType.Character && keyChar != null && keyChar == 'w' && isplat(luigi.getPosition())) saltaLuigi();
+        if (key.getKeyType() == KeyType.Character && keyChar != null && keyChar == 'w' && isplat(luigi.getPosition()));
 
         if (key.getKeyType() == KeyType.Character && keyChar != null) {
             if (keyChar == 'a') {
-                moveLuigi(luigi.moveLeft());
-            } else if (keyChar == 'd') {
-                moveLuigi(luigi.moveRight());
+                moveHero(luigi.moveLeft(), luigi);
+            }
+            if (keyChar == 'd') {
+                moveHero(luigi.moveRight(), luigi);
+            }
+            if (keyChar == 'w'){
+                jump(luigi);
             }
         }
 
@@ -196,28 +200,28 @@ public class Arena {
     }
 
 
-    private void hitPlat(Position position) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
+    private void hitPlat(Position position, Hero personagem) {    //hero se pular em baixo da plataforma vai ativar hitplat para matar o monstro
         //Primeira plat
-        if (position.getY() == 6 && position.getX() < 35 && hero.isJumpState()) applyHit();
-        if (position.getY() == 6 && position.getX() >= 45 && hero.isJumpState()) applyHit();
+        if (position.getY() == 6 && position.getX() < 35 && personagem.isJumpState()) applyHit(personagem);
+        if (position.getY() == 6 && position.getX() >= 45 && personagem.isJumpState()) applyHit(personagem);
 
         //Segunda plat
-        if (position.getY() == 12 && position.getX() < 7 && hero.isJumpState()) applyHit();
-        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && hero.isJumpState()) applyHit();
-        if (position.getY() == 12 && position.getX() >= 73 && hero.isJumpState()) applyHit();
+        if (position.getY() == 12 && position.getX() < 7 && personagem.isJumpState()) applyHit(personagem);
+        if (position.getY() == 11 && position.getX() > 23 && position.getX() < 59 && personagem.isJumpState()) applyHit(personagem);
+        if (position.getY() == 12 && position.getX() >= 73 && personagem.isJumpState()) applyHit(personagem);
 
         //terceira plat
-        if (position.getY() == 16 && position.getX() < 30 && hero.isJumpState()) applyHit();
-        if (position.getY() == 16 && position.getX() >= 50 && hero.isJumpState()) applyHit();
+        if (position.getY() == 16 && position.getX() < 30 && personagem.isJumpState()) applyHit(personagem);
+        if (position.getY() == 16 && position.getX() >= 50 && personagem.isJumpState()) applyHit(personagem);
 
         //POW
-        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && hero.isJumpState())
+        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && personagem.isJumpState())
         {powBlock();}
     }
 
-    private void applyHit(){
+    private void applyHit(Hero personagem){
         for (Monster monster1 : monsters)
-            if (monster1.position.getY() == hero.position.getY()-2 && monster1.position.getX() == hero.position.getX())
+            if (monster1.position.getY() == personagem.position.getY()-2 && monster1.position.getX() == personagem.position.getX())
             {
                 monster1.setHit(true);
             }
@@ -229,9 +233,9 @@ public class Arena {
 
     }
 
-    public void moveHero(Position position) {
+    public void moveHero(Position position, Hero personagem) {
         if (canHeroMove(position)) {
-            hero.setPosition(position);
+            personagem.setPosition(position);
         }
     }
 
@@ -300,37 +304,17 @@ public class Arena {
      */
     private final Game gameInstance;
 
-    public void jump() {
+    public void jump(Hero personagem) {
 
         try {
-            hero.setJumpState(true);
+            personagem.setJumpState(true);
             for (int i = 0; i < 6; i++) {
-                moveHero(hero.moveUp());
+                moveHero(personagem.moveUp(), personagem);
                 Thread.sleep(30);
                 gameInstance.draw();
-                hitPlat(hero.getPosition());
+                hitPlat(personagem.getPosition(), personagem);
             }
-        hero.setJumpState(false);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException("Error jump()");
-        }
-
-    }
-
-    public void saltaLuigi() {
-
-        try {
-            luigi.setJumpState(true);
-            for (int i = 0; i < 6; i++) {
-                moveLuigi(luigi.moveUp());
-                Thread.sleep(30);
-                gameInstance.draw();
-                hitPlat(luigi.getPosition());
-
-            }
-            luigi.setJumpState(false);
+        personagem.setJumpState(false);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -346,8 +330,8 @@ public class Arena {
     }
 
     public void Herofall(){
-        moveHero(hero.moveDown());
-        moveLuigi(luigi.moveDown());
+        moveHero(hero.moveDown(), hero);
+        moveHero(luigi.moveDown(), luigi);
     }
 
     public boolean isHeroJumping() {
