@@ -58,6 +58,9 @@ public class Game {
             if (!arena.isHeroJumping()){
                 arena.Herofall();
             }
+            if (!arena.isLuigiJumping()){
+                arena.Luigifall();
+            }
 
             if (startTime - lastMonsterMovement > 500) {
                 arena.moveMonsters();

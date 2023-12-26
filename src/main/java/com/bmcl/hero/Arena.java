@@ -74,7 +74,7 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         hero.draw(graphics);
-        luigi.draw(graphics);
+        luigi.draw2(graphics);
         for (Wall wall : walls) wall.draw(graphics);
 
         for (Monster monster : monsters){
@@ -100,8 +100,6 @@ public class Arena {
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft(), hero);
 
         Character keyChar = key.getCharacter();
-        if (key.getKeyType() == KeyType.Character && keyChar != null && keyChar == 'w' && isplat(luigi.getPosition()));
-
         if (key.getKeyType() == KeyType.Character && keyChar != null) {
             if (keyChar == 'a') {
                 moveHero(luigi.moveLeft(), luigi);
@@ -109,7 +107,7 @@ public class Arena {
             if (keyChar == 'd') {
                 moveHero(luigi.moveRight(), luigi);
             }
-            if (keyChar == 'w'){
+            if (keyChar == 'w' && isplat(luigi.getPosition())){
                 jump(luigi);
             }
         }
@@ -239,12 +237,6 @@ public class Arena {
         }
     }
 
-    public void moveLuigi(Position position) {
-        if (canHeroMove(position)) {
-            luigi.setPosition(position);
-        }
-    }
-
     public void moveMonster(Position position,Monster monster) {
         if (canMonsterMove(position, monster)) {
             monster.setPosition(position);
@@ -331,13 +323,13 @@ public class Arena {
 
     public void Herofall(){
         moveHero(hero.moveDown(), hero);
+    }
+    public void Luigifall(){
         moveHero(luigi.moveDown(), luigi);
     }
-
     public boolean isHeroJumping() {
         return hero.isJumpState();
     }
-
     public boolean isLuigiJumping() {
         return luigi.isJumpState();
     }
