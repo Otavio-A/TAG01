@@ -232,7 +232,7 @@ public class Arena {
     }
 
     public void moveHero(Position position, Hero personagem) {
-        if (canHeroMove(position)) {
+        if (canHeroMove(position, personagem)) {
             personagem.setPosition(position);
         }
     }
@@ -268,25 +268,19 @@ public class Arena {
 
 
 
-    private boolean canHeroMove(Position position) {
+    private boolean canHeroMove(Position position, Hero personagem) {
         if (!canBichoMove(position))return false;
 
         if (position.getX() > 80)
         {
-            hero.setPosition(new Position(0, position.getY()));
+            personagem.setPosition(new Position(0, position.getY()));
             return false;
         }
 
         if (position.getX() < 0 )
         {
-            hero.setPosition(new Position(80, position.getY()));
+            personagem.setPosition(new Position(80, position.getY()));
             return false;
-        }
-
-
-        if(!isplat(position) && hero.isJumpState())
-        {
-            //System.out.println("jumping");
         }
 
         return true;
