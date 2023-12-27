@@ -26,6 +26,7 @@ public class Arena {
     private int width;
     private int height;
 
+    private int pontos = 0;
     private List<Wall> walls;
     private final List<Monster> monsters;
 
@@ -81,8 +82,13 @@ public class Arena {
 
 
     public void draw(TextGraphics graphics) {
+
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
+        graphics.putString(new TerminalPosition(0, 0), "SCORE:"+pontos);
+        graphics.putString(new TerminalPosition(71, 0),"LIFES:eee");
         if(hero.getDirecao()){
             hero.marioDireita(graphics);
         }else{
@@ -149,8 +155,16 @@ public class Arena {
 
 
     public void verifyMonsterCollisions() {
-        monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit());
+        monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit()) ;
         monsters.removeIf(monster -> luigi.getPosition().equals(monster.getPosition()) && monster.isHit());
+
+        //for (Monster monster : monsters){
+            //if(hero.getPosition().equals(monster.getPosition()) && monster.isHit()
+            //monster.drawPontos();
+
+        //}
+
+
 
         for (Monster monster : monsters)
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
