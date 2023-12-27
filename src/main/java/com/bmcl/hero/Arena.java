@@ -97,7 +97,21 @@ public class Arena {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
         graphics.putString(new TerminalPosition(0, 0), "SCORE:"+pontos);
-        graphics.putString(new TerminalPosition(71, 0),"LIFES:eee");
+        switch (hero.getLives()){
+            case 3:
+                graphics.putString(new TerminalPosition(71, 0),"LIFES:eee");
+                break;
+            case 2:
+                graphics.putString(new TerminalPosition(71, 0),"LIFES:ee");
+                break;
+            case 1:
+                graphics.putString(new TerminalPosition(71, 0),"LIFES:e");
+                break;
+            case 0:
+                graphics.putString(new TerminalPosition(71, 0),"LIFES:");
+                break;
+        }
+
         if(hero.getDirecao()){
             hero.marioDireita(graphics);
         }else{
