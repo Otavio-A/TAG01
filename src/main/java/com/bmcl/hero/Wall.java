@@ -21,8 +21,8 @@ public class Wall extends Element {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
-        graphics.putString(new TerminalPosition(2, 0), "Mario: ");
-        graphics.putString(new TerminalPosition(70, 0),"Vidas: ");
+        graphics.putString(new TerminalPosition(0, 0), "SCORE:");
+        graphics.putString(new TerminalPosition(71, 0),"LIFES:eee");
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#0000FF"));//fundo azul
 
@@ -45,7 +45,7 @@ public class Wall extends Element {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#00FFF0"));//fundo POW
 
         //POW
-        graphics.fillRectangle(new TerminalPosition(39, 15), new TerminalSize(2, 1), ' ');
+        graphics.fillRectangle(new TerminalPosition(39, 15), new TerminalSize(1, 1), ' ');
 
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#00FF00"));//fundo verde
@@ -65,4 +65,12 @@ public class Wall extends Element {
         graphics.fillRectangle(new TerminalPosition(78, 19), new TerminalSize(2, 1), ' ');
 
     }
+    int pontos;
+    public void drawPontos(TextGraphics graphics) {
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
+        pontos = pontos + 100;
+        graphics.putString(new TerminalPosition(7, 0), String.valueOf(pontos));
+    }
+
 }

@@ -6,12 +6,21 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 public class Arena {
     private final Hero hero;
+
+
     private final Hero luigi;
 
     private int width;
@@ -19,6 +28,7 @@ public class Arena {
 
     private List<Wall> walls;
     private final List<Monster> monsters;
+
 
     public Arena(int width, int height, Game gameInstance) {
         this.width = width;
@@ -73,8 +83,18 @@ public class Arena {
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
-        hero.draw(graphics);
-        luigi.draw2(graphics);
+        if(hero.getDirecao()){
+            hero.marioDireita(graphics);
+        }else{
+            hero.marioEsquerda(graphics);
+        }
+
+        if(luigi.getDirecao()){
+            luigi.luigiDireita(graphics);
+        }else{
+            luigi.luigiEsquerda(graphics);
+        }
+
         for (Wall wall : walls) wall.draw(graphics);
 
         for (Monster monster : monsters){
@@ -96,15 +116,26 @@ public class Arena {
         }
 
         if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump(hero);
-        if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight(), hero);
-        if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft(), hero);
+        if (key.getKeyType() == KeyType.ArrowRight){
+            hero.setDirecao(true);
+            moveHero(hero.moveRight(), hero);
+
+        }
+        if (key.getKeyType() == KeyType.ArrowLeft){
+            hero.setDirecao(false);
+            moveHero(hero.moveLeft(), hero);
+
+        }
+
 
         Character keyChar = key.getCharacter();
         if (key.getKeyType() == KeyType.Character && keyChar != null) {
             if (keyChar == 'a') {
+                luigi.setDirecao(false);
                 moveHero(luigi.moveLeft(), luigi);
             }
             if (keyChar == 'd') {
+                luigi.setDirecao(true);
                 moveHero(luigi.moveRight(), luigi);
             }
             if (keyChar == 'w' && isplat(luigi.getPosition())){
@@ -189,7 +220,7 @@ public class Arena {
         if (position.getY() == 14 && position.getX() >= 50) return true;
 
         //POW
-        if (position.getY() == 14 && position.getX() > 38 && position.getX() < 41) return true;
+        if (position.getY() == 14 && position.getX() > 38 && position.getX() < 40) return true;
 
         //CHAO
         if (position.getY() == 19 ) return true;
@@ -213,7 +244,7 @@ public class Arena {
         if (position.getY() == 16 && position.getX() >= 50 && personagem.isJumpState()) applyHit(personagem);
 
         //POW
-        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 41 && personagem.isJumpState())
+        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 40 && personagem.isJumpState())
         {powBlock();}
     }
 
@@ -259,7 +290,7 @@ public class Arena {
         if (position.getY() == 15 && position.getX() >= 50) return false;
 
         //POW
-        if (position.getY() == 15 && position.getX() > 38 && position.getX() < 41) return false;
+        if (position.getY() == 15 && position.getX() > 38 && position.getX() < 40) return false;
 
         if (position.getY() == 20) return false;
 

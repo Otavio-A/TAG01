@@ -10,6 +10,7 @@ public class Hero extends Element {
         super(x, y);
     }
 
+    private boolean direcao = false ; // verdadeiro = direita , falso = esquerda
     private boolean jumpState = false;
 
     public boolean isJumpState() {
@@ -18,6 +19,14 @@ public class Hero extends Element {
 
     public void setJumpState(boolean jumpState) {
         this.jumpState = jumpState;
+    }
+
+    public boolean getDirecao() {
+        return direcao;
+    }
+
+    public void setDirecao(boolean direcao) {
+        this.direcao = direcao;
     }
 
     public Position getPosition() {
@@ -45,14 +54,29 @@ public class Hero extends Element {
     }
 
     public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#e03e3e"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
+
     }
 
-    public void draw2(TextGraphics graphics) {
+    public void marioDireita(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#e03e3e"));
+        //graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "m");
+    }
+    public void marioEsquerda(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#e03e3e"));
+        //graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "n");
+    }
+
+    public void luigiDireita(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#2afc31"));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
+        //graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "m");
+    }
+
+    public void luigiEsquerda(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#2afc31"));
+        //graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "n");
     }
 }
