@@ -57,14 +57,4 @@ public class Monster extends Element {
         return new Position(position.getX(), position.getY() + 1);
     }
 
-    int pontos;
-    public void drawPontos(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
-        pontos = pontos + 100;
-        graphics.putString(new TerminalPosition(7, 0), String.valueOf(pontos));
-    }
-
-
-
 }

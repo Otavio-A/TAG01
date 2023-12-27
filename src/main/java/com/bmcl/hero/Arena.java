@@ -169,11 +169,6 @@ public class Arena {
         monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit()) ;
         monsters.removeIf(monster -> luigi.getPosition().equals(monster.getPosition()) && monster.isHit());
 
-        //for (Monster monster : monsters){
-            //if(hero.getPosition().equals(monster.getPosition()) && monster.isHit()
-            //monster.drawPontos();
-
-        //}
 
 
 
