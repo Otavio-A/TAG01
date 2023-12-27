@@ -10,6 +10,8 @@ public class Hero extends Element {
         super(x, y);
     }
 
+    private int lives = 3;
+
     private boolean direcao = false ; // verdadeiro = direita , falso = esquerda
     private boolean jumpState = false;
 
@@ -35,6 +37,14 @@ public class Hero extends Element {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 
     public Position moveUp() {

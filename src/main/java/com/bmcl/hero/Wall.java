@@ -19,7 +19,14 @@ public class Wall extends Element {
     }
 
     public void draw(TextGraphics graphics) {
+<<<<<<< HEAD
 
+=======
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
+
+        graphics.putString(new TerminalPosition(71, 0),"LIFES:eee");
+>>>>>>> 2c8479b1b811bc73760cfe662726f3c43076b2c5
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#0000FF"));//fundo azul
 

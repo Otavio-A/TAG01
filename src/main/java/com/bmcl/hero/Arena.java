@@ -26,9 +26,20 @@ public class Arena {
     private int width;
     private int height;
 
+<<<<<<< HEAD
     private int pontos = 0;
+=======
+    private int score = 420;
+
+    public int getScore() {
+        return score;
+    }
+
+>>>>>>> 2c8479b1b811bc73760cfe662726f3c43076b2c5
     private List<Wall> walls;
     private final List<Monster> monsters;
+
+    private Position respawn = new Position(39,14);
 
 
     public Arena(int width, int height, Game gameInstance) {
@@ -101,7 +112,9 @@ public class Arena {
             luigi.luigiEsquerda(graphics);
         }
 
-        for (Wall wall : walls) wall.draw(graphics);
+        for (Wall wall : walls) {
+            wall.draw(graphics);
+        }
 
         for (Monster monster : monsters){
             if(monster.isHit()){
@@ -169,10 +182,19 @@ public class Arena {
         for (Monster monster : monsters)
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
-                System.exit(0);
+                hero.setLives(hero.getLives() -1);
+
+                hero.setPosition(respawn);
+                if (hero.getLives() == 0) {
+                    System.exit(0);
+                }
             }else if(luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()){
                 System.out.println("You died!");
-                System.exit(0);
+                hero.setLives(hero.getLives() -1);
+               luigi.setPosition(respawn);
+                if (hero.getLives() == 0) {
+                    System.exit(0);
+                }
             }
     }
 
@@ -234,7 +256,7 @@ public class Arena {
         if (position.getY() == 14 && position.getX() >= 50) return true;
 
         //POW
-        if (position.getY() == 14 && position.getX() > 38 && position.getX() < 40) return true;
+        if (position.getY() == 14 && position.getX() == 39) return true;
 
         //CHAO
         if (position.getY() == 19 ) return true;
@@ -258,7 +280,7 @@ public class Arena {
         if (position.getY() == 16 && position.getX() >= 50 && personagem.isJumpState()) applyHit(personagem);
 
         //POW
-        if (position.getY() == 16 && position.getX() > 38 && position.getX() < 40 && personagem.isJumpState())
+        if (position.getY() == 16 && position.getX() == 39 && personagem.isJumpState())
         {powBlock();}
     }
 
@@ -304,7 +326,7 @@ public class Arena {
         if (position.getY() == 15 && position.getX() >= 50) return false;
 
         //POW
-        if (position.getY() == 15 && position.getX() > 38 && position.getX() < 40) return false;
+        if (position.getY() == 15 && position.getX() == 39) return false;
 
         if (position.getY() == 20) return false;
 

@@ -47,7 +47,7 @@ public class Game {
 
 
     public Game(int width, int heigt) throws IOException {
-        setFont(changeFont("C:/Users/gonca/IdeaProjects/TAG01/src/main/java/com/bmcl/hero/SquareUpdated.ttf", 20));
+        setFont(changeFont("src/main/java/com/bmcl/hero/SquareUpdated.ttf", 20));
         AWTTerminalFontConfiguration cfg = new SwingTerminalFontConfiguration(true,AWTTerminalFontConfiguration.BoldMode.NOTHING, getFont());
         Terminal terminal = new DefaultTerminalFactory()
                 .setForceAWTOverSwing(true)
