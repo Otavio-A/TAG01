@@ -26,16 +26,14 @@ public class Arena {
     private int width;
     private int height;
 
-<<<<<<< HEAD
+
     private int pontos = 0;
-=======
-    private int score = 420;
 
-    public int getScore() {
-        return score;
-    }
 
->>>>>>> 2c8479b1b811bc73760cfe662726f3c43076b2c5
+
+
+
+
     private List<Wall> walls;
     private final List<Monster> monsters;
 
