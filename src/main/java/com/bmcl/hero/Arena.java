@@ -178,7 +178,6 @@ public class Arena {
         verifyMonsterCollisions();
     }
 
-
     public void verifyMonsterCollisions() {
         monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit()) ;
         monsters.removeIf(monster -> luigi.getPosition().equals(monster.getPosition()) && monster.isHit());
@@ -186,23 +185,25 @@ public class Arena {
 
 
 
-        for (Monster monster : monsters)
+        for (Monster monster : monsters) {
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
-                hero.setLives(hero.getLives() -1);
+                hero.setLives(hero.getLives() - 1);
 
                 hero.setPosition(respawn);
                 if (hero.getLives() == 0) {
                     System.exit(0);
                 }
-            }else if(luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()){
+            }
+            if (luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
-                hero.setLives(hero.getLives() -1);
-               luigi.setPosition(respawn);
+                hero.setLives(hero.getLives() - 1);
+                luigi.setPosition(respawn);
                 if (hero.getLives() == 0) {
                     System.exit(0);
                 }
             }
+        }
     }
 
     public void moveMonsters() {
