@@ -20,8 +20,6 @@ import java.util.List;
 public class Arena {
     private final Hero hero;
 
-
-
     private final Hero luigi;
 
     private int width;
@@ -32,6 +30,7 @@ public class Arena {
 
     private List<Wall> walls;
     private final List<Monster> monsters;
+
 
     private Position respawn = new Position(39,14);
 
@@ -47,6 +46,13 @@ public class Arena {
         this.monsters = createMonsters();
 
         this.gameInstance = gameInstance; //PARA O JUMP()
+    }
+
+
+    public void drawPause(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#2afc31"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#0000FF"));
+        graphics.putString(new TerminalPosition(10, 10),"Pausa");
     }
 
 
@@ -92,12 +98,12 @@ public class Arena {
 
 
     public void draw(TextGraphics graphics) {
-
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));//letra vermelha
         graphics.putString(new TerminalPosition(0, 0), "SCORE:"+pontos);
+
         switch (hero.getLives()){
             case 3:
                 graphics.putString(new TerminalPosition(71, 0),"LIFES:eee");
@@ -139,6 +145,8 @@ public class Arena {
             }
         }
     }
+
+
 
     public void processKey(KeyStroke key) {
         Character keyChar = key.getCharacter();
