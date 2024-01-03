@@ -27,12 +27,7 @@ public class Arena {
     private int height;
 
 
-    private int pontos = 0;
-
-
-
-
-
+    private int pontos ;
 
     private List<Wall> walls;
     private final List<Monster> monsters;
@@ -67,7 +62,7 @@ public class Arena {
             }
         };
 
-        timer.schedule(myTask, 1000, 4000);
+        timer.schedule(myTask, 1000, 3000);
 
         return monsters;
     }
@@ -88,6 +83,10 @@ public class Arena {
 
         return walls;
     }
+    public void addPontos() {
+        pontos = pontos + 100;
+    }
+
 
 
     public void draw(TextGraphics graphics) {
@@ -150,12 +149,11 @@ public class Arena {
         if (key.getKeyType() == KeyType.ArrowRight){
             hero.setDirecao(true);
             moveHero(hero.moveRight(), hero);
-
         }
+
         if (key.getKeyType() == KeyType.ArrowLeft){
             hero.setDirecao(false);
             moveHero(hero.moveLeft(), hero);
-
         }
 
 
@@ -179,13 +177,30 @@ public class Arena {
     }
 
     public void verifyMonsterCollisions() {
-        monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit()) ;
-        monsters.removeIf(monster -> luigi.getPosition().equals(monster.getPosition()) && monster.isHit());
+
+        //monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit());
+        //monsters.removeIf(monster -> luigi.getPosition().equals(monster.getPosition()) && monster.isHit());
 
 
+        Iterator<Monster> iterator = monsters.iterator();
+        while (iterator.hasNext()) {
+            Monster monster = iterator.next();
+            if (monster.getPosition().equals(hero.getPosition()) && monster.isHit()) {
+                addPontos();
+                iterator.remove();
+            }
+            if (monster.getPosition().equals(luigi.getPosition()) && monster.isHit()) {
+                addPontos();
+                iterator.remove();
+            }
+        }
 
+<<<<<<< HEAD
 
         for (Monster monster : monsters) {
+=======
+        for (Monster monster : monsters){
+>>>>>>> fc6b4fec3e8380ffe0b37b8b97490086f2e08d45
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
                 hero.setLives(hero.getLives() - 1);
@@ -195,7 +210,11 @@ public class Arena {
                     System.exit(0);
                 }
             }
+<<<<<<< HEAD
             if (luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
+=======
+            if(luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()){
+>>>>>>> fc6b4fec3e8380ffe0b37b8b97490086f2e08d45
                 System.out.println("You died!");
                 hero.setLives(hero.getLives() - 1);
                 luigi.setPosition(respawn);
@@ -212,7 +231,8 @@ public class Arena {
             if(!monster.isHit()){
             if (canMonsterMove(monsterPosition,monster)) {
                 monster.setPosition(monsterPosition);
-            }}
+            }
+            }
         }
     }
 
@@ -225,7 +245,7 @@ public class Arena {
             return  false;
         }
 
-        if (position.getX() == 2 && position.getY() == 19 )//baixo esquerda
+        if (position.getX() == 1 && position.getY() == 19 )//baixo esquerda
         {
             monster.setPosition(new Position(77, 2));
             return  false;
