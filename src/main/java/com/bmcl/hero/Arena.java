@@ -195,12 +195,9 @@ public class Arena {
             }
         }
 
-<<<<<<< HEAD
 
-        for (Monster monster : monsters) {
-=======
         for (Monster monster : monsters){
->>>>>>> fc6b4fec3e8380ffe0b37b8b97490086f2e08d45
+
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
                 hero.setLives(hero.getLives() - 1);
@@ -210,11 +207,9 @@ public class Arena {
                     System.exit(0);
                 }
             }
-<<<<<<< HEAD
-            if (luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
-=======
+
             if(luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()){
->>>>>>> fc6b4fec3e8380ffe0b37b8b97490086f2e08d45
+
                 System.out.println("You died!");
                 hero.setLives(hero.getLives() - 1);
                 luigi.setPosition(respawn);
