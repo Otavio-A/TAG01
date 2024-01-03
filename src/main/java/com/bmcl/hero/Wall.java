@@ -22,23 +22,23 @@ public class Wall extends Element {
 
 
 
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#0000FF"));//fundo azul
-
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));//fundo preto
+        graphics.setForegroundColor(TextColor.Factory.fromString("#0000FF"));
         //primeira plat
-        graphics.fillRectangle(new TerminalPosition(0, 5), new TerminalSize(35, 1), ' ');
-        graphics.fillRectangle(new TerminalPosition(45, 5), new TerminalSize(35, 1), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 5), new TerminalSize(35, 1), 'p');
+        graphics.fillRectangle(new TerminalPosition(45, 5), new TerminalSize(35, 1), 'p');
 
         //segunda plat
-        graphics.fillRectangle(new TerminalPosition(0, 11), new TerminalSize(7, 1), ' ');
-        graphics.fillRectangle(new TerminalPosition(24, 10), new TerminalSize(35, 1), ' ');
-        graphics.fillRectangle(new TerminalPosition(73, 11), new TerminalSize(7, 1), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 11), new TerminalSize(7, 1), 'p');
+        graphics.fillRectangle(new TerminalPosition(24, 10), new TerminalSize(35, 1), 'p');
+        graphics.fillRectangle(new TerminalPosition(73, 11), new TerminalSize(7, 1), 'p');
 
         //terceira plat
-        graphics.fillRectangle(new TerminalPosition(0, 15), new TerminalSize(30, 1), ' ');
-        graphics.fillRectangle(new TerminalPosition(50, 15), new TerminalSize(30, 1), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 15), new TerminalSize(30, 1), 'p');
+        graphics.fillRectangle(new TerminalPosition(50, 15), new TerminalSize(30, 1), 'p');
 
         //chão
-        graphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(80, 1), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(80, 1), 'p');
 
         graphics.setBackgroundColor(TextColor.Factory.fromString("#00FFF0"));//fundo POW
 
