@@ -6,16 +6,26 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Wall extends Element {
+
+    private boolean empty = false;
+
     public Wall(int x, int y) {
         super(x, y);
     }
-
     public Position getPosition() {
         return position;
     }
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
     }
 
     public void draw(TextGraphics graphics) {
@@ -40,7 +50,9 @@ public class Wall extends Element {
         //chão
         graphics.fillRectangle(new TerminalPosition(0, 20), new TerminalSize(80, 1), 'p');
 
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#00FFF0"));//fundo POW
+        //fundo POW
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#00FFF0"));
+        if (empty){graphics.setBackgroundColor(TextColor.Factory.fromString("#ff0000"));}
 
         //POW
         graphics.fillRectangle(new TerminalPosition(39, 15), new TerminalSize(1, 1), ' ');

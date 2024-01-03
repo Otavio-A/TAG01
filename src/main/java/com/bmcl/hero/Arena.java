@@ -304,7 +304,9 @@ public class Arena {
 
         //POW
         if (position.getY() == 16 && position.getX() == 39 && personagem.isJumpState())
-        {powBlock();}
+        {
+            powBlock();
+        }
     }
 
     private void applyHit(Hero personagem){
@@ -314,11 +316,15 @@ public class Arena {
                 monster1.setHit(true);
             }
     }
-    private void powBlock(){
+    private void powBlock() {
+        for (Wall wall : walls)
         for (Monster monster1 : monsters)
-            if (isplat(monster1.getPosition()))
+            if (isplat(monster1.getPosition()) && !wall.isEmpty()) {
                 monster1.setHit(true);
 
+            }
+        for (Wall wall : walls)
+        wall.setEmpty(true);
     }
 
     public void moveHero(Position position, Hero personagem) {
