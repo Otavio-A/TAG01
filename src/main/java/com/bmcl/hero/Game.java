@@ -74,6 +74,7 @@ public class Game {
     //Exemplo basico sem controlo de velocidade
 
     public void run() throws IOException {
+        boolean gamePaused = false;
         int FPS = 144;
         int frameTime = 1000 / FPS;
         long lastMonsterMovement = 0;
@@ -82,15 +83,42 @@ public class Game {
             long startTime = System.currentTimeMillis();
 
             draw();
+
             KeyStroke key = screen.pollInput(); //Não fica à espera de teclas, vai armazenando num buffer, devolve null se nenhuma tecla está no buffer
+
             if (key != null) {
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
-                    screen.close();
-                if (key.getKeyType() == KeyType.EOF)
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && !gamePaused) {
+                    gamePaused = true;
+                }else if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
+                    gamePaused = false;
+                }
+
+
+
+                if(gamePaused){
+                    while(true){
+                        key = screen.readInput();
+                        //System.out.println("Game paused.");
+                        if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused){
+                            //System.out.println("Game not paused.");
+                            gamePaused = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
+                    screen.close();}
+                if (key.getKeyType() == KeyType.EOF){
                     break;
+                }
+
+
                 arena.processKey(key);
 
             }
+
+
 
             arena.Monsterfall();
 

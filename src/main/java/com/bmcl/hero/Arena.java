@@ -21,6 +21,7 @@ public class Arena {
     private final Hero hero;
 
 
+
     private final Hero luigi;
 
     private int width;
@@ -47,6 +48,7 @@ public class Arena {
 
         this.gameInstance = gameInstance; //PARA O JUMP()
     }
+
 
     private List<Monster> createMonsters() {
        ArrayList<Monster> monsters = new ArrayList<>();
@@ -139,11 +141,14 @@ public class Arena {
     }
 
     public void processKey(KeyStroke key) {
-
+        Character keyChar = key.getCharacter();
         //verificar se key está null
         if (key == null) {
             return;
         }
+
+
+
 
         if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump(hero);
         if (key.getKeyType() == KeyType.ArrowRight){
@@ -157,7 +162,9 @@ public class Arena {
         }
 
 
-        Character keyChar = key.getCharacter();
+
+
+
         if (key.getKeyType() == KeyType.Character && keyChar != null) {
             if (keyChar == 'a') {
                 luigi.setDirecao(false);
