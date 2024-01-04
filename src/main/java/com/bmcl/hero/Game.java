@@ -20,10 +20,13 @@ public class Game {
     private final TerminalScreen screen;
     private final Arena arena;
     private Font font;
+    private Menu menu;
+
 
     TextGraphics grafics;
 
     boolean gamePaused = false;
+
     public Font getFont() {
         return font;
     }
@@ -33,12 +36,11 @@ public class Game {
     }
 
 
-
-    public Font changeFont(String path, int size){
+    public Font changeFont(String path, int size) {
         File fontFile = new File(path);
         Font font;
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT,fontFile);
+            font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
         } catch (FontFormatException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -46,16 +48,14 @@ public class Game {
         }
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-        Font loaded = font.deriveFont(Font.PLAIN,size);
+        Font loaded = font.deriveFont(Font.PLAIN, size);
         return loaded;
     }
 
 
-
-
     public Game(int width, int heigt) throws IOException {
         setFont(changeFont("src/main/java/com/bmcl/hero/SquareUpdated.ttf", 20));
-        AWTTerminalFontConfiguration cfg = new SwingTerminalFontConfiguration(true,AWTTerminalFontConfiguration.BoldMode.NOTHING, getFont());
+        AWTTerminalFontConfiguration cfg = new SwingTerminalFontConfiguration(true, AWTTerminalFontConfiguration.BoldMode.NOTHING, getFont());
         Terminal terminal = new DefaultTerminalFactory()
                 .setForceAWTOverSwing(true)
                 .setInitialTerminalSize(new TerminalSize(width, heigt))
@@ -67,25 +67,43 @@ public class Game {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
 
+        menu = new Menu(screen.newTextGraphics());
+        menu.draw();
+        screen.refresh();
+        waitForMenuInput();
         arena = new Arena(width, heigt, this); //pro Jump() em Arena
     }
 
+    private void waitForMenuInput() throws IOException {
+        while (true) {
+            KeyStroke key = screen.readInput();
+            menu.processKey(key);
+
+            if (key.getKeyType() == KeyType.Enter) {
+                if (menu.getStartSelected()) {
+                    break;
+                } else {
+                    screen.close();
+                    System.exit(0);
+                }
+            }
+        }
+    }
 
 
     public void draw() throws IOException { // Isso estava como Private antes
 
-         grafics = screen.newTextGraphics();
+        grafics = screen.newTextGraphics();
 
-        if (gamePaused){
+        if (gamePaused) {
             arena.drawPause(grafics);
-        }else{
+        } else {
             screen.clear();
             arena.draw(grafics);
         }
 
         screen.refresh();
     }
-
 
 
     //Exemplo basico sem controlo de velocidade
@@ -99,72 +117,70 @@ public class Game {
         while (true) {
             long startTime = System.currentTimeMillis();
 
-                draw();
-
+            draw();
 
 
             KeyStroke key = screen.pollInput(); //Não fica à espera de teclas, vai armazenando num buffer, devolve null se nenhuma tecla está no buffer
 
-            if (key != null) {
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && !gamePaused) {
-                    arena.drawPause(grafics);
-                    gamePaused = true;
-                }else if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
-                    gamePaused = false;
-                }
+                if (key != null) {
+                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && !gamePaused) {
+                        arena.drawPause(grafics);
+                        gamePaused = true;
+                    } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
+                        gamePaused = false;
+                    }
 
-                if(gamePaused){
-                    while(true){
-                        key = screen.readInput();
-                        //System.out.println("Game paused.");
+                    if (gamePaused) {
+                        while (true) {
+                            key = screen.readInput();
+                            //System.out.println("Game paused.");
 
-                        if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused){
-                            //System.out.println("Game not paused.");
-                            gamePaused = false;
-                            break;
+                            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
+                                //System.out.println("Game not paused.");
+                                gamePaused = false;
+                                break;
+                            }
                         }
                     }
+
+                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+                        screen.close();
+                    }
+                    if (key.getKeyType() == KeyType.EOF) {
+                        break;
+                    }
+
+
+                    arena.processKey(key);
+
                 }
 
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
-                    screen.close();}
-                if (key.getKeyType() == KeyType.EOF){
-                    break;
+
+                arena.Monsterfall();
+
+                if (!arena.isHeroJumping()) {
+                    arena.Herofall();
+                }
+                if (!arena.isLuigiJumping()) {
+                    arena.Luigifall();
+                }
+
+                if (startTime - lastMonsterMovement > 500) {
+                    arena.moveMonsters();
+                    arena.verifyMonsterCollisions();
+                    lastMonsterMovement = startTime;
                 }
 
 
-                arena.processKey(key);
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                long sleepTime = frameTime - elapsedTime;
+
+                if (sleepTime > 0) try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                }
+
 
             }
-
-
-
-            arena.Monsterfall();
-
-            if (!arena.isHeroJumping()){
-                arena.Herofall();
-            }
-            if (!arena.isLuigiJumping()){
-                arena.Luigifall();
-            }
-
-            if (startTime - lastMonsterMovement > 500) {
-                arena.moveMonsters();
-                arena.verifyMonsterCollisions();
-                lastMonsterMovement = startTime;
-            }
-
-
-
-            long elapsedTime = System.currentTimeMillis() - startTime;
-            long sleepTime = frameTime - elapsedTime;
-
-            if (sleepTime > 0) try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-            }
-
-
         }
     }
-}
