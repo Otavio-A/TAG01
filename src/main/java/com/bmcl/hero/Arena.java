@@ -202,7 +202,11 @@ public class Arena {
             Monster monster = iterator.next();
             if (monster.getPosition().equals(hero.getPosition()) && monster.isHit()) {
                 addPontos();
-                System.out.println(pontos);
+                System.out.println(pontos % 1000);
+                for (Wall wall : walls) {
+                    if (pontos % 1000 == 0 && wall.isEmpty()) {
+                        wall.setEmpty(false);}
+                }
                 iterator.remove();
             }
             if (monster.getPosition().equals(luigi.getPosition()) && monster.isHit()) {
@@ -330,15 +334,18 @@ public class Arena {
             if (monster1.position.getY() == personagem.position.getY()-2 && monster1.position.getX() == personagem.position.getX())
             {
                 monster1.setHit(true);
+
             }
     }
     private void powBlock() {
-        for (Wall wall : walls)
+        for (Wall wall : walls){
             for (Monster monster1 : monsters)
                 if (isplat(monster1.getPosition()) && !wall.isEmpty()) {
                     monster1.setHit(true);
-
                 }
+        wall.setEmpty(true);
+    }
+
     }
 
     public void moveHero(Position position, Hero personagem) {
