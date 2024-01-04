@@ -67,22 +67,32 @@ public class Game {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
 
+        // Cria um novo menu e associa ao ecra atual
         menu = new Menu(screen.newTextGraphics());
-        menu.draw();
-        screen.refresh();
+
+        //Aguarda input do utilizador antes de começar o jogo
         waitForMenuInput();
+
         arena = new Arena(width, heigt, this); //pro Jump() em Arena
     }
 
     private void waitForMenuInput() throws IOException {
         while (true) {
+            //draw ao menu e atualiza o ecrã
+            menu.draw();
+            screen.refresh();
+
+            //le o input do utilizador e processa a key
             KeyStroke key = screen.readInput();
             menu.processKey(key);
 
+            //verifica se a tecla pressionada foi o enter
             if (key.getKeyType() == KeyType.Enter) {
-                if (menu.getStartSelected()) {
+                //se a opção start estiver for selecionada quebra o loop e inicia o jogo
+                if (menu.isStartSelected()) {
                     break;
                 } else {
+                    //se a opção selecionada for exit, fecha o programa.
                     screen.close();
                     System.exit(0);
                 }
@@ -121,6 +131,9 @@ public class Game {
 
 
             KeyStroke key = screen.pollInput(); //Não fica à espera de teclas, vai armazenando num buffer, devolve null se nenhuma tecla está no buffer
+
+            //funcao para processar a keyinput
+            menu.processKey(key);
 
                 if (key != null) {
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && !gamePaused) {

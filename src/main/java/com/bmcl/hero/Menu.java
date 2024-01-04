@@ -11,48 +11,49 @@ import java.io.IOException;
 public class Menu {
 
     private final TextGraphics graphics;
-    private boolean startSelected = true;
+    private int selectedOptionIndex = 0;
 
-    public Menu(TextGraphics graphics){
+
+    public Menu(TextGraphics graphics) {
         this.graphics = graphics;
-
     }
 
     public void draw() {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
         graphics.fillRectangle(new TerminalPosition(0, 0), graphics.getSize(), ' ');
 
-        graphics.setForegroundColor(startSelected ? TextColor.ANSI.GREEN : TextColor.ANSI.DEFAULT);
-        graphics.putString(new TerminalPosition(35, 0), "MARIO BROS ARCADE");
+        //Desenha o mario
+        graphics.setForegroundColor(TextColor.ANSI.RED);
+        graphics.putString(new TerminalPosition(32,0),"m");
 
-        graphics.setForegroundColor(startSelected ? TextColor.ANSI.GREEN : TextColor.ANSI.DEFAULT);
-        graphics.putString(new TerminalPosition(40, 5), "START");
+        //Desenha o Luigi
+        graphics.setForegroundColor(TextColor.ANSI.GREEN);
+        graphics.putString(new TerminalPosition(52,0),"m");
 
-        graphics.setForegroundColor(startSelected ? TextColor.ANSI.GREEN : TextColor.ANSI.DEFAULT);
-        graphics.putString(new TerminalPosition(40, 7), "EXIT");
-    }
+        //Desenha o titulo
+        graphics.setForegroundColor(TextColor.ANSI.WHITE);
+        graphics.putString(new TerminalPosition(34, 0), "MARIO BROS ARCADE");
 
 
-    public void processKey(KeyStroke key) throws IOException{
-        if(key.getKeyType()== KeyType.ArrowUp || key.getKeyType()==KeyType.ArrowDown){
-            startSelected = !startSelected;
-            draw();
-        } else if (key.getKeyType()==KeyType.Enter) {
-            if(startSelected){
-                startGame();
-            }else{
-                System.exit(0);
-            }
-
+        for (int i = 0; i < 2; i++) {
+            graphics.setForegroundColor(i == selectedOptionIndex ? TextColor.ANSI.GREEN : TextColor.ANSI.RED);
+            graphics.putString(new TerminalPosition(38, 5 + i * 2), i == selectedOptionIndex ? "> " : "  ");
+            graphics.putString(new TerminalPosition(40, 5 + i * 2), i == 0 ? "START" : "EXIT");
         }
     }
 
-    private void startGame() throws IOException{
-        Game game = new Game(80,20);
-        game.run();
+
+    public void processKey(KeyStroke key) {
+        if (key != null) {
+            if (key.getKeyType() == KeyType.ArrowUp) {
+                selectedOptionIndex = (selectedOptionIndex - 1 + 2) % 2;
+            } else if (key.getKeyType() == KeyType.ArrowDown) {
+                selectedOptionIndex = (selectedOptionIndex + 1) % 2;
+            }
+        }
     }
 
-    public boolean getStartSelected() {
-        return startSelected;
+    public boolean isStartSelected() {
+        return selectedOptionIndex == 0;
     }
 }
