@@ -157,7 +157,7 @@ public class Game {
                     }
 
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
-                        screen.close();
+                        System.exit(0);
                     }
                     if (key.getKeyType() == KeyType.EOF) {
                         break;
