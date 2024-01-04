@@ -52,7 +52,7 @@ public class Menu {
         game.run();
     }
 
-    public boolean getStartSelected() { 
+    public boolean getStartSelected() {
         return startSelected;
     }
 }
