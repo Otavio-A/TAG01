@@ -2,6 +2,7 @@ package com.bmcl.hero;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import javax.swing.plaf.basic.BasicDesktopIconUI;
 import java.io.IOException;
@@ -42,6 +43,22 @@ class ArenaTest {
         Position badPosition = new Position(20,15);
         luigi.setPosition(badPosition);
         assertFalse(arena.canBichoMove(monster.getPosition()));
+    }
+
+
+    @Test
+    void isPlat(){
+        Position plataform = new Position(45,4);
+        hero.setPosition(plataform);
+        assertTrue(arena.isplat(hero.getPosition()));
+    }
+    @Test
+    void powBlock(){   //USAR UM SPY PARA VER SE O POWBLOCK RODOU
+        Position position = new Position(39, 16);
+        Position plataform = new Position(35,4);
+        hero.setPosition(position);
+        hero.setJumpState(true);
+
     }
 
 }

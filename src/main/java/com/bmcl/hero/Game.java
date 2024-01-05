@@ -99,8 +99,6 @@ public class Game {
             }
         }
     }
-
-
     public void draw() throws IOException { // Isso estava como Private antes
 
         grafics = screen.newTextGraphics();
@@ -114,7 +112,6 @@ public class Game {
 
         screen.refresh();
     }
-
 
     //Exemplo basico sem controlo de velocidade
 
