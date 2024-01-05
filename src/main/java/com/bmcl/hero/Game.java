@@ -134,43 +134,21 @@ public class Game {
 
             //funcao para processar a keyinput
             menu.processKey(key);
-
+            if (!gamePaused){
                 if (key != null) {
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && !gamePaused) {
                         arena.drawPause(grafics);
                         gamePaused = true;
-                    } else if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
-                        gamePaused = false;
                     }
-
-                    if (gamePaused) {
-                        while (true) {
-                            key = screen.readInput();
-                            //System.out.println("Game paused.");
-
-                            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
-                                //System.out.println("Game not paused.");
-                                gamePaused = false;
-                                break;
-                            }
-                        }
-                    }
-
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                         System.exit(0);
                     }
                     if (key.getKeyType() == KeyType.EOF) {
                         break;
                     }
-
-
                     arena.processKey(key);
-
                 }
-
-
                 arena.Monsterfall();
-
                 if (!arena.isHeroJumping()) {
                     arena.Herofall();
                 }
@@ -187,13 +165,20 @@ public class Game {
 
                 long elapsedTime = System.currentTimeMillis() - startTime;
                 long sleepTime = frameTime - elapsedTime;
-
                 if (sleepTime > 0) try {
                     Thread.sleep(sleepTime);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException e) {}
+
+            }
+            else if (gamePaused){
+                if (key != null){
+                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+                        System.exit(0);}
+                    if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && gamePaused) {
+                        gamePaused = false;
+                    }
                 }
-
-
             }
         }
     }
+}

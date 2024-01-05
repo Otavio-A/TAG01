@@ -51,8 +51,8 @@ public class Arena {
 
     public void drawPause(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#2afc31"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#0000FF"));
-        graphics.putString(new TerminalPosition(10, 10),"Pausa");
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+        graphics.putString(new TerminalPosition(37, 8),"PAUSED");
     }
 
 
