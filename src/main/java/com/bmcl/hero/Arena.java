@@ -12,19 +12,22 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.List;
 
 public class Arena {
     private final Hero hero;
 
+
     private final Hero luigi;
 
     private int width;
     private int height;
 
+    FileWriter fw = null;
+    BufferedWriter bw = null;
+    PrintWriter pw = null;
 
     private int pontos ;
 
@@ -92,8 +95,33 @@ public class Arena {
         return walls;
     }
     public void addPontos() {
+
         pontos = pontos + 100;
-    }
+        try {
+            fw = new FileWriter("pontos.txt", true);
+            bw = new BufferedWriter(fw);
+            pw = new PrintWriter(bw);
+            
+            pw.println(pontos);
+
+            pw.flush();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                pw.close();
+                bw.close();
+                fw.close();
+            } catch (IOException io) {
+                throw new RuntimeException(io);
+            }
+            }
+
+        }
+
+
+
 
 
 
