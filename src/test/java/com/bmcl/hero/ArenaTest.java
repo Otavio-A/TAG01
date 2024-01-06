@@ -85,5 +85,14 @@ class ArenaTest {
 
         assertTrue(monster.isHit());
     }
-
+    @Test
+    void gravity(){
+        monsters = arena.getMonsters();
+        Position abovePlat = new Position(45,2);
+        Position afterFall = new Position(45, 3);
+        monster.setPosition(abovePlat);
+        monsters.add(monster);
+        arena.Monsterfall();
+        assertEquals(afterFall, monster.getPosition());
+    }
 }
