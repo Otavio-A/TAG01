@@ -131,6 +131,7 @@ public class Game {
 
             //funcao para processar a keyinput
             menu.processKey(key);
+
             if (!gamePaused){
                 if (key != null) {
                     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'p' && !gamePaused) {

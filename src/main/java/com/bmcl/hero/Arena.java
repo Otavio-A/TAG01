@@ -29,6 +29,9 @@ public class Arena {
     BufferedWriter bw = null;
     PrintWriter pw = null;
 
+    private String name = null;
+
+    Scanner myObj = new Scanner(System.in);
     private int pontos ;
 
     private List<Wall> walls;
@@ -91,18 +94,30 @@ public class Arena {
             walls.add(new Wall(0, r));
             walls.add(new Wall(width , r));
         }
-
         return walls;
     }
-    public void addPontos() {
 
+    public void addPontos() {
         pontos = pontos + 100;
+    }
+
+
+
+    public void leaderboard() {
+
+        while(true){
+            System.out.println("Enter Name");
+            name = myObj.nextLine();
+            if (name!=null){
+                break;
+            }
+        }
         try {
             fw = new FileWriter("pontos.txt", true);
             bw = new BufferedWriter(fw);
             pw = new PrintWriter(bw);
-            
-            pw.println(pontos);
+
+            pw.println(name+" "+pontos);
 
             pw.flush();
 
@@ -116,13 +131,8 @@ public class Arena {
             } catch (IOException io) {
                 throw new RuntimeException(io);
             }
-            }
-
         }
-
-
-
-
+    }
 
 
     public void draw(TextGraphics graphics) {
@@ -183,9 +193,6 @@ public class Arena {
             return;
         }
 
-
-
-
         if (key.getKeyType() == KeyType.ArrowUp && isplat(hero.getPosition())) jump(hero);
         if (key.getKeyType() == KeyType.ArrowRight){
             hero.setDirecao(true);
@@ -220,10 +227,8 @@ public class Arena {
     }
 
     public void verifyMonsterCollisions() {
-
         //monsters.removeIf(monster -> hero.getPosition().equals(monster.getPosition()) && monster.isHit());
         //monsters.removeIf(monster -> luigi.getPosition().equals(monster.getPosition()) && monster.isHit());
-
 
         Iterator<Monster> iterator = monsters.iterator();
         while (iterator.hasNext()) {
@@ -239,6 +244,10 @@ public class Arena {
             }
             if (monster.getPosition().equals(luigi.getPosition()) && monster.isHit()) {
                 addPontos();
+                for (Wall wall : walls) {
+                    if (pontos % 1000 == 0 && wall.isEmpty()) {
+                        wall.setEmpty(false);}
+                }
                 iterator.remove();
             }
         }
@@ -249,9 +258,9 @@ public class Arena {
             if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
                 System.out.println("You died!");
                 hero.setLives(hero.getLives() - 1);
-
                 hero.setPosition(respawn);
                 if (hero.getLives() == 0) {
+                    leaderboard();
                     System.exit(0);
                 }
             }
@@ -262,6 +271,7 @@ public class Arena {
                 hero.setLives(hero.getLives() - 1);
                 luigi.setPosition(respawn);
                 if (hero.getLives() == 0) {
+                    leaderboard();
                     System.exit(0);
                 }
             }
