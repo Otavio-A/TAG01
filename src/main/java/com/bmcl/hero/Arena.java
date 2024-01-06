@@ -357,19 +357,18 @@ public class Arena {
         }
     }
 
-    private void applyHit(Hero personagem){
+    public void applyHit(Hero personagem){
         for (Monster monster1 : monsters)
             if (monster1.position.getY() == personagem.position.getY()-2 && monster1.position.getX() == personagem.position.getX())
             {
                 monster1.setHit(true);
-
             }
     }
-    private void powBlock() {
+    public void powBlock() {
         for (Wall wall : walls){
-            for (Monster monster1 : monsters)
-                if (isplat(monster1.getPosition()) && !wall.isEmpty()) {
-                    monster1.setHit(true);
+            for (Monster monster : monsters)
+                if (isplat(monster.getPosition()) && !wall.isEmpty()) {
+                    monster.setHit(true);
                 }
         wall.setEmpty(true);
     }

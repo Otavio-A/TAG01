@@ -2,12 +2,17 @@ package com.bmcl.hero;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 
 import javax.swing.plaf.basic.BasicDesktopIconUI;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ArenaTest {
     Hero hero = new Hero(34,19);
@@ -53,12 +58,22 @@ class ArenaTest {
         assertTrue(arena.isplat(hero.getPosition()));
     }
     @Test
-    void powBlock(){   //USAR UM SPY PARA VER SE O POWBLOCK RODOU
-        Position position = new Position(39, 16);
-        Position plataform = new Position(35,4);
-        hero.setPosition(position);
-        hero.setJumpState(true);
+    void isMonsterPlat(){
+        Position plataform = new Position(45,4);
+        monster.setPosition(plataform);
+        assertTrue(arena.isplat(monster.getPosition()));
+    }
 
+
+
+    @Test
+    void pow(){
+        Position plataform = new Position(45,4);
+        Position underPlat = new Position(45,6);
+        monster.setPosition(plataform);
+        hero.setPosition(underPlat);
+        arena.applyHit(hero);
+        assertTrue(monster.isHit());
     }
 
 }
