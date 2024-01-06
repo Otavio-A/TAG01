@@ -38,7 +38,11 @@ public class Arena {
     private final List<Monster> monsters;
 
 
+
     private Position respawn = new Position(39,14);
+    public List<Monster> getMonsters() {
+        return monsters;
+    }
 
 
     public Arena(int width, int height, Game gameInstance) {
@@ -63,7 +67,7 @@ public class Arena {
 
 
     private List<Monster> createMonsters() {
-       ArrayList<Monster> monsters = new ArrayList<>();
+        ArrayList<Monster> monsters = new ArrayList<>();
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {
 
@@ -72,6 +76,7 @@ public class Arena {
                     if (monsters.size() % 2 == 0)
                         monsters.add(new Monster(4, 2 ,true));
                     else
+
                         monsters.add(new Monster(77, 2 ,false));
             }
         };

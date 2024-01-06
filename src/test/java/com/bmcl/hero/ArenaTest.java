@@ -28,7 +28,12 @@ class ArenaTest {
     }
 
     Arena arena = new Arena(80,21,game);
-    Monster monster = new Monster(20,20);
+    Monster monster = new Monster(20,20,true);
+
+    List<Monster> monsters = new ArrayList<>();
+
+
+
     @Test
     void monsterMoveWall(){
         Position badPosition = new Position(15, 20);
@@ -68,11 +73,16 @@ class ArenaTest {
 
     @Test
     void pow(){
+        monsters = arena.getMonsters();
         Position plataform = new Position(45,4);
         Position underPlat = new Position(45,6);
+
         monster.setPosition(plataform);
         hero.setPosition(underPlat);
+        monsters.clear();
+        monsters.add(monster);
         arena.applyHit(hero);
+
         assertTrue(monster.isHit());
     }
 
