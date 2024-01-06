@@ -24,15 +24,15 @@ public class Menu {
 
         //Desenha o mario
         graphics.setForegroundColor(TextColor.ANSI.RED);
-        graphics.putString(new TerminalPosition(32,0),"m");
+        graphics.putString(new TerminalPosition(32,1),"n");
 
         //Desenha o Luigi
         graphics.setForegroundColor(TextColor.ANSI.GREEN);
-        graphics.putString(new TerminalPosition(52,0),"m");
+        graphics.putString(new TerminalPosition(52,1),"m");
 
         //Desenha o titulo
         graphics.setForegroundColor(TextColor.ANSI.WHITE);
-        graphics.putString(new TerminalPosition(34, 0), "MARIO BROS ARCADE");
+        graphics.putString(new TerminalPosition(34, 1), "MARIO BROS ARCADE");
 
 
         for (int i = 0; i < 2; i++) {
