@@ -118,7 +118,7 @@ public class Arena {
             }
         }
         try {
-            fw = new FileWriter("pontos.txt", true);
+            fw = new FileWriter("leaderboard.txt", true);
             bw = new BufferedWriter(fw);
             pw = new PrintWriter(bw);
 

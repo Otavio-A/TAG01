@@ -1,5 +1,6 @@
 package com.bmcl.hero;
 
+import com.bmcl.hero.Menu.Menu;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -13,14 +14,13 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class Game {
     private final TerminalScreen screen;
     private final Arena arena;
     private Font font;
-    private Menu menu;
+    private com.bmcl.hero.Menu.Menu menu;
 
 
     TextGraphics grafics;
@@ -62,6 +62,7 @@ public class Game {
                 .setTerminalEmulatorFontConfiguration(cfg)
                 .createTerminal();
         screen = new TerminalScreen(terminal);
+        grafics = screen.newTextGraphics();
 
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
@@ -78,30 +79,53 @@ public class Game {
 
     private void waitForMenuInput() throws IOException {
         while (true) {
-            //draw ao menu e atualiza o ecrã
             menu.draw();
             screen.refresh();
 
-            //le o input do utilizador e processa a key
             KeyStroke key = screen.readInput();
             menu.processKey(key);
 
-            //verifica se a tecla pressionada foi o enter
             if (key.getKeyType() == KeyType.Enter) {
-                //se a opção start estiver for selecionada quebra o loop e inicia o jogo
                 if (menu.isStartSelected()) {
                     break;
-                } else {
-                    //se a opção selecionada for exit, fecha o programa.
+                } else if (menu.isLeaderboardSelected()) {
+                    displayLeaderboard();
+                } else if (menu.isExitSelected()) {
                     screen.close();
-                    System.exit(0);
+                    return;
                 }
             }
         }
     }
-    public void draw() throws IOException { // Isso estava como Private antes
 
-        grafics = screen.newTextGraphics();
+
+
+    public void displayLeaderboard() {
+
+        screen.clear();
+        File ficheiro = new File("src/main/java/com/bmcl/hero/leaderboard.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(ficheiro))) {
+            String line;
+            int lineNumber = 0;
+            grafics.setForegroundColor(TextColor.ANSI.WHITE);
+
+            while ((line = reader.readLine()) != null) {
+                grafics.putString(new TerminalPosition(1, 1 + lineNumber), line);
+                lineNumber++;
+            }
+            screen.refresh();
+
+            screen.readInput();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void draw() throws IOException {
+        if (grafics == null) {
+            grafics = screen.newTextGraphics();
+        }
 
         if (gamePaused) {
             arena.drawPause(grafics);
