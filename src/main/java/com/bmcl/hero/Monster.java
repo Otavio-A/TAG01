@@ -10,6 +10,9 @@ public class Monster extends Element {
 
     private boolean isHit = false;
 
+    public void setDirecao(boolean direcao) {
+        this.direcao = direcao;
+    }
 
     private boolean direcao = false; //false == esquerda , true == direita
 
