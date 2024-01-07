@@ -35,13 +35,13 @@ public class Menu {
         graphics.putString(new TerminalPosition(34, 1), "MARIO BROS ARCADE");
 
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             //Define a cor do texto dependendo da opção que estiver selecionada
             graphics.setForegroundColor(i == selectedOptionIndex ? TextColor.ANSI.GREEN : TextColor.ANSI.RED);
 
             //Desenha o texto da opcao start ou exit na posicao especifica
-            graphics.putString(new TerminalPosition(38, 5 + i * 2), i == selectedOptionIndex ? "> " : "  ");
-            graphics.putString(new TerminalPosition(40, 5 + i * 2), i == 0 ? "START" : "EXIT");
+            graphics.putString(new TerminalPosition(38, 5 + i * 3), i == selectedOptionIndex ? "> " : "  ");
+            graphics.putString(new TerminalPosition(40, 5 + i * 3), i == 0 ? "START" : "EXIT");
         }
     }
 
