@@ -122,7 +122,7 @@ public class Arena {
             bw = new BufferedWriter(fw);
             pw = new PrintWriter(bw);
 
-            pw.println(name+" "+pontos);
+            pw.println(name.toUpperCase()+" "+pontos);
 
             pw.flush();
 
