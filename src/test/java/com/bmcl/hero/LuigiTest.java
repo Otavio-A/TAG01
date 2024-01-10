@@ -33,5 +33,11 @@ public class LuigiTest {
         assertEquals(luigi.getPosition(), expected);
     }
 
+    @Test
+    public void jumpTest(){
+        luigi.setJumpState(true);
+        assertEquals(luigi.isJumpState(), true);
+    }
+
 
 }

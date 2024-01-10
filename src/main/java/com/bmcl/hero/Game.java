@@ -91,8 +91,7 @@ public class Game {
                 } else if (menu.isLeaderboardSelected()) {
                     displayLeaderboard();
                 } else if (menu.isExitSelected()) {
-                    screen.close();
-                    return;
+                    System.exit(0);
                 }
             }
         }

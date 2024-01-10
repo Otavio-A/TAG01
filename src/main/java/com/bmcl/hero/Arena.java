@@ -6,12 +6,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
-import java.awt.*;
 import java.io.*;
 import java.util.*;
 import java.util.List;
@@ -252,16 +247,16 @@ public class Arena {
                 addPontos();
                 System.out.println(pontos % 1000);
                 for (Wall wall : walls) {
-                    if (pontos % 1000 == 0 && wall.isEmpty()) {
-                        wall.setEmpty(false);}
+                    if (pontos % 1000 == 0 && wall.isUsed()) {
+                        wall.setUsed(false);}
                 }
                 iterator.remove();
             }
             if (monster.getPosition().equals(luigi.getPosition()) && monster.isHit()) {
                 addPontos();
                 for (Wall wall : walls) {
-                    if (pontos % 1000 == 0 && wall.isEmpty()) {
-                        wall.setEmpty(false);}
+                    if (pontos % 1000 == 0 && wall.isUsed()) {
+                        wall.setUsed(false);}
                 }
                 iterator.remove();
             }
@@ -392,10 +387,10 @@ public class Arena {
     public void powBlock() {
         for (Wall wall : walls){
             for (Monster monster : monsters)
-                if (isplat(monster.getPosition()) && !wall.isEmpty()) {
+                if (isplat(monster.getPosition()) && !wall.isUsed()) {
                     monster.setHit(true);
                 }
-        wall.setEmpty(true);
+        wall.setUsed(true);
     }
 
     }

@@ -7,7 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Wall extends Element {
 
-    private boolean empty = false;
+    private boolean used = false;
 
     public Wall(int x, int y) {
         super(x, y);
@@ -20,12 +20,12 @@ public class Wall extends Element {
         this.position = position;
     }
 
-    public boolean isEmpty() {
-        return empty;
+    public boolean isUsed() {
+        return used;
     }
 
-    public void setEmpty(boolean empty) {
-        this.empty = empty;
+    public void setUsed(boolean empty) {
+        this.used = empty;
     }
 
     public void draw(TextGraphics graphics) {
@@ -52,7 +52,7 @@ public class Wall extends Element {
 
         //fundo POW
         graphics.setBackgroundColor(TextColor.Factory.fromString("#00FFF0"));
-        if (empty){graphics.setBackgroundColor(TextColor.Factory.fromString("#ff0000"));}
+        if (used){graphics.setBackgroundColor(TextColor.Factory.fromString("#ff0000"));}
 
         //POW
         graphics.fillRectangle(new TerminalPosition(39, 15), new TerminalSize(1, 1), ' ');

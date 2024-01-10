@@ -88,4 +88,17 @@ class ArenaTest {
         arena.Monsterfall();
         assertEquals(afterFall, monster.getPosition());
     }
+
+    @Test
+    void arenaJumpTest(){
+        Position plataform = new Position(45,4);
+        Position jumpPostion = new Position(45, -2);
+        hero.setPosition(plataform);
+        arena.jump(hero);
+        assertEquals(hero.getPosition(), jumpPostion);
+
+    }
+
+
+
 }
