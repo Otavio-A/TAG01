@@ -4,13 +4,10 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.util.Random;
+public class MonsterEspecial extends Monster {
 
-public class Monster extends Element {
-
-    int VidasMonstros = 1;
-    private boolean especial = false;
-    private boolean isHit = false;
+    int VidasMonstros = 3;
+    boolean especial = true;
 
     public boolean isEspecial() {
         return especial;
@@ -19,6 +16,20 @@ public class Monster extends Element {
     public void setEspecial(boolean espc) {
         especial = espc;
     }
+    public boolean getVidas() {
+        return especial;
+    }
+
+    public void setVidas(boolean espc) {
+        especial = espc;
+    }
+
+
+    public MonsterEspecial(int x, int y, boolean direcao) {
+        super(x, y, direcao);
+    }
+
+    private boolean isHit = false;
 
     public void setDirecao(boolean direcao) {
         this.direcao = direcao;
@@ -26,19 +37,11 @@ public class Monster extends Element {
 
     private boolean direcao = false; //false == esquerda , true == direita
 
-    public Monster(int x, int y) {
-        super(x, y);
-    }
-
-    public Monster(int x, int y , boolean direcao) {
-        super(x, y);
-        this.direcao = direcao;
-    }
 
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#f4f13a"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000"));
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "M");
     }
 
@@ -51,9 +54,9 @@ public class Monster extends Element {
 
     public Position move() {
         if (direcao)
-            return new Position(position.getX() + 1, position.getY());
-        else
             return new Position(position.getX() - 1, position.getY());
+        else
+            return new Position(position.getX() + 1, position.getY());
     }
 
 

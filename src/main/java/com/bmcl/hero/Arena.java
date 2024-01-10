@@ -70,14 +70,24 @@ public class Arena {
         ArrayList<Monster> monsters = new ArrayList<>();
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {
-
+            int count;
             public void run() {
-                if (monsters.size() != 5)
-                    if (monsters.size() % 2 == 0)
-                        monsters.add(new Monster(4, 2 ,true));
-                    else
+                count = count + 1 ;
+                if (monsters.size() != 5){
+                    count = count + 1;
+                    if (count % 5 == 0 && count > 0){
+                        monsters.add(new MonsterEspecial(4, 2, true));
+                    }else{
+                        if (monsters.size() % 2 == 0){
+                            monsters.add(new Monster(4, 2, true));
+                        }
+                        else
+                        {
+                            monsters.add(new Monster(77, 2 ,false));
+                        }
+                    }
 
-                        monsters.add(new Monster(77, 2 ,false));
+                }
             }
         };
 
@@ -376,7 +386,8 @@ public class Arena {
         for (Monster monster1 : monsters)
             if (monster1.position.getY() == personagem.position.getY()-2 && monster1.position.getX() == personagem.position.getX())
             {
-                monster1.setHit(true);
+                if(monster1.isEspecial())
+                    monster1.setHit(true);
             }
     }
     public void powBlock() {
