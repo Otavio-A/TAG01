@@ -17,17 +17,10 @@ import static org.mockito.Mockito.*;
 class ArenaTest {
     Hero hero = new Hero(34,19);
     Luigi luigi = new Luigi(35,24);
-    Game game;
 
-    {
-        try {
-            game = new Game(80,21);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    Game game= Mockito.mock(Game.class);
     Arena arena = new Arena(80,21,game);
+
     Monster monster = new Monster(20,20,true);
 
     List<Monster> monsters = new ArrayList<>();
