@@ -33,4 +33,5 @@ public class GameTest {
         gameMock.getFont();
         Mockito.when(gameMock.getFont()).thenReturn(font);
     }
+
 }

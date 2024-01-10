@@ -39,6 +39,9 @@ public class Arena {
         return monsters;
     }
 
+    public List<Wall> getWalls() {
+        return walls;
+    }
 
     public Arena(int width, int height, Game gameInstance) {
         this.width = width;
