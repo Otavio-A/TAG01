@@ -4,7 +4,7 @@ plugins {
     id 'info.solidsoft.pitest' version '1.6.0'
 }
 
-group 'com.aor.hero'
+group 'com.bmcl.hero'
 version '1.0'
 
 repositories {
@@ -12,10 +12,10 @@ repositories {
 }
 
 pitest{
-    junit5PluginVersion = '0.12'
+    junit5PluginVersion = '0.15'
 }
 application {
-    mainClassName= 'com.aor.hero.Application'
+    mainClassName= 'com.bmcl.hero.Application'
 }
 
 
