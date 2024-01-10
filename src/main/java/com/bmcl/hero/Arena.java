@@ -386,7 +386,6 @@ public class Arena {
         for (Monster monster1 : monsters)
             if (monster1.position.getY() == personagem.position.getY()-2 && monster1.position.getX() == personagem.position.getX())
             {
-                if(monster1.isEspecial())
                     monster1.setHit(true);
             }
     }

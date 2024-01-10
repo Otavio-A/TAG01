@@ -16,9 +16,7 @@ public class Monster extends Element {
         return especial;
     }
 
-    public void setEspecial(boolean espc) {
-        especial = espc;
-    }
+
 
     public void setDirecao(boolean direcao) {
         this.direcao = direcao;
@@ -63,10 +61,9 @@ public class Monster extends Element {
 
 
     public void setHit(boolean hit) {
-        VidasMonstros = VidasMonstros -1;
-        if (VidasMonstros == 0){
+
             isHit = hit;
-        }
+
     }
 
     public Position moveDown() {

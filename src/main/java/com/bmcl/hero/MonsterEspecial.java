@@ -66,10 +66,7 @@ public class MonsterEspecial extends Monster {
 
 
     public void setHit(boolean hit) {
-        VidasMonstros = VidasMonstros -1;
-        if (VidasMonstros == 0){
-            isHit = hit;
-        }
+                 isHit = hit;
     }
 
     public Position moveDown() {
