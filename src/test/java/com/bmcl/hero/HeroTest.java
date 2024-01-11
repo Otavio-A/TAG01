@@ -1,9 +1,16 @@
 package com.bmcl.hero;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.mockito.stubbing.OngoingStubbing;
+
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class HeroTest {
     Hero hero = new Hero(1,1);
@@ -48,4 +55,5 @@ class HeroTest {
         hero.setLives(2);
         assertEquals(hero.getLives(), 2);
     }
+
 }
