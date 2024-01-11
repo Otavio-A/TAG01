@@ -16,7 +16,6 @@ import static org.mockito.Mockito.*;
 
 class ArenaTest {
     Hero hero = new Hero(34,19);
-    Luigi luigi = new Luigi(35,24);
 
     Game game= Mockito.mock(Game.class);
     Arena arena = new Arena(80,21,game);
@@ -38,13 +37,6 @@ class ArenaTest {
     void heroMoveWall(){
         Position badPosition = new Position(15, 20);
         hero.setPosition(badPosition);
-        assertFalse(arena.canBichoMove(monster.getPosition()));
-    }
-
-    @Test
-    void luigiMoveWall(){
-        Position badPosition = new Position(20,15);
-        luigi.setPosition(badPosition);
         assertFalse(arena.canBichoMove(monster.getPosition()));
     }
 
@@ -111,7 +103,6 @@ class ArenaTest {
         arena.verifyMonsterCollisions();
         int lives = hero.getLives();
         assertEquals(lives, 2);
-
     }
 
 

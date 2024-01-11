@@ -71,14 +71,10 @@ public class Arena {
         ArrayList<Monster> monsters = new ArrayList<>();
         Timer timer = new Timer();
         TimerTask myTask = new TimerTask() {
-            int count;
+
             public void run() {
-                count = count + 1 ;
+
                 if (monsters.size() != 5){
-                    count = count + 1;
-                    if (count % 5 == 0 && count > 0){
-                        monsters.add(new MonsterEspecial(4, 2, true));
-                    }else{
                         if (monsters.size() % 2 == 0){
                             monsters.add(new Monster(4, 2, true));
                         }
@@ -86,8 +82,6 @@ public class Arena {
                         {
                             monsters.add(new Monster(77, 2 ,false));
                         }
-                    }
-
                 }
             }
         };
