@@ -32,6 +32,11 @@ class HeroTest {
         hero.setPosition(hero.moveRight());
         assertEquals(hero.getPosition(), expected);
     }
+    @Test
+    public void jumpTest(){
+        hero.setJumpState(true);
+        assertEquals(hero.isJumpState(), true);
+    }
 
 
 }

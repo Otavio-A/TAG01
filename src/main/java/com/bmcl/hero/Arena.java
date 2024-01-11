@@ -14,6 +14,9 @@ import java.util.List;
 public class Arena {
     private final Hero hero;
 
+    public Hero getHero() {
+        return hero;
+    }
 
     private final Hero luigi;
 

@@ -98,6 +98,22 @@ class ArenaTest {
         assertEquals(hero.getPosition(), jumpPostion);
 
     }
+    @Test
+    void deathTest(){
+        Position plataform = new Position(45,4);
+        monsters = arena.getMonsters();
+        monster.setPosition(plataform);
+        hero = arena.getHero();
+        monster.setHit(false);
+        monsters.clear();
+        monsters.add(monster);
+        hero.setPosition(plataform);
+        arena.verifyMonsterCollisions();
+        int lives = hero.getLives();
+        assertEquals(lives, 2);
+
+    }
+
 
 
 
