@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/gonca/IdeaProjects/TAG01/src/main/java/com/bmcl/hero</OriginalElement>
+  <nodes>
+    <node x="-113.66726170437744" y="1633.9891065236907">com.bmcl.hero.Wall</node>
+    <node x="-1083.3029084210582" y="2037.6756909555754">com.bmcl.hero.Game</node>
+    <node x="552.3880388949792" y="1989.4409166483795">com.bmcl.hero.Position</node>
+    <node x="-807.3327382956226" y="1398.577087352548">com.bmcl.hero.Monster</node>
+    <node x="-518.0" y="1312.8987798100457">com.bmcl.hero.Arena</node>
+    <node x="-1042.6654765912451" y="1753.751636894943">com.bmcl.hero.Application</node>
+    <node x="270.26511213662457" y="1524.9876139652697">com.bmcl.hero.Hero</node>
+    <node x="143.86497420839714" y="2338.4281043485717">com.bmcl.hero.Element</node>
+    <node x="-1083.3029084210582" y="2374.097119903986">com.bmcl.hero.Menu.Menu</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.bmcl.hero.Element" target="com.bmcl.hero.Position" relationship="CREATE">
+      <point x="38.25" y="-44.0" />
+      <point x="499.4622688835267" y="2350.9281043485717" />
+      <point x="499.4622688835267" y="2150.9409166483792" />
+      <point x="48.5" y="68.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Position" relationship="CREATE">
+      <point x="27.75" y="-356.5" />
+      <point x="-323.75" y="1241.7591287636133" />
+      <point x="582.7439005221413" y="1241.7591287636133" />
+      <point x="582.7439005221413" y="2057.014734144779" />
+      <point x="697.8880388949792" y="2057.014734144779" />
+      <point x="48.5" y="68.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Hero" target="com.bmcl.hero.Position" relationship="CREATE">
+      <point x="99.0" y="-176.5" />
+      <point x="501.26511213662457" y="2082.4409166483792" />
+      <point x="697.8880388949792" y="2082.4409166483792" />
+      <point x="48.5" y="68.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Monster" target="com.bmcl.hero.Position" relationship="CREATE">
+      <point x="-81.75" y="-116.5" />
+      <point x="-742.8121396540678" y="1423.077087352548" />
+      <point x="-742.8121396540678" y="1174.96732863549" />
+      <point x="705.4633111563501" y="1174.96732863549" />
+      <point x="705.4633111563501" y="1996.3858237592058" />
+      <point x="697.8880388949792" y="1996.3858237592058" />
+      <point x="48.5" y="68.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Wall" target="com.bmcl.hero.Element" relationship="GENERALIZATION">
+      <point x="-66.50008654768726" y="-6.457737072196323E-5" />
+      <point x="119.74882768906832" y="1714.98904194632" />
+      <point x="119.74882768906832" y="2373.717342016733" />
+      <point x="174.37796284433057" y="2373.717342016733" />
+      <point x="174.37796284433057" y="2394.9284375400384" />
+      <point x="76.49967025028332" y="3.331914670070546E-4" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Wall" relationship="TO_MANY">
+      <point x="166.5" y="178.25" />
+      <point x="-185.0" y="1875.5962524023062" />
+      <point x="-69.73068258842602" y="1875.5962524023062" />
+      <point x="-69.73068258842602" y="1777.6137877269318" />
+      <point x="-113.66726170437744" y="1777.6137877269318" />
+      <point x="-101.0" y="34.25" />
+    </edge>
+    <edge source="com.bmcl.hero.Monster" target="com.bmcl.hero.Element" relationship="GENERALIZATION">
+      <point x="-106.50037653585423" y="4.597326535531465E-4" />
+      <point x="-698.3327382956226" y="1539.5775470852016" />
+      <point x="-698.3327382956226" y="2394.9284375400384" />
+      <point x="76.49967025028332" y="3.331914670070546E-4" />
+    </edge>
+    <edge source="com.bmcl.hero.Hero" target="com.bmcl.hero.Element" relationship="GENERALIZATION">
+      <point x="-82.50047600593939" y="3.296606114417955E-4" />
+      <point x="243.88968513773216" y="1737.9879436258811" />
+      <point x="243.88968513773216" y="2394.9284375400384" />
+      <point x="76.49967025028332" y="3.331914670070546E-4" />
+    </edge>
+    <edge source="com.bmcl.hero.Element" target="com.bmcl.hero.Position" relationship="TO_ONE">
+      <point x="-38.25" y="-44.0" />
+      <point x="182.11497420839714" y="2406.6137091607943" />
+      <point x="600.8880388949792" y="2406.6137091607943" />
+      <point x="-48.5" y="68.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Game" target="com.bmcl.hero.Menu.Menu" relationship="CREATE">
+      <point x="-56.75" y="104.5" />
+      <point x="-909.3029084210582" y="2259.175690955575" />
+      <point x="58.0" y="92.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Monster" relationship="TO_MANY">
+      <point x="-83.25" y="-356.5" />
+      <point x="-434.75" y="1286.0" />
+      <point x="-671.0827382956226" y="1286.0" />
+      <point x="27.25" y="-116.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Application" target="com.bmcl.hero.Game" relationship="CREATE">
+      <point x="82.0" y="-0.0" />
+      <point x="-969.8029084210582" y="1797.751636894943" />
+      <point x="-969.8029084210582" y="2085.383087764254" />
+      <point x="-1083.3029084210582" y="2085.383087764254" />
+      <point x="-113.5" y="-0.0" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Hero" relationship="TO_ONE">
+      <point x="138.75" y="-356.5" />
+      <point x="-212.75" y="1435.3850096092249" />
+      <point x="303.26511213662457" y="1435.3850096092249" />
+      <point x="-99.0" y="-176.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Game" target="com.bmcl.hero.Arena" relationship="TO_ONE">
+      <point x="113.5" y="69.66666666666666" />
+      <point x="-856.3029084210582" y="2241.8739868401617" />
+      <point x="-266.6547085201794" y="2241.8739868401617" />
+      <point x="-266.6547085201794" y="2086.2735426008967" />
+      <point x="46.139333760409954" y="380.37476279085104" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Game" relationship="TO_ONE">
+      <point x="-166.5" y="-237.66666666666669" />
+      <point x="-518.0" y="2085.009024288909" />
+      <point x="-543.0" y="2085.009024288909" />
+      <point x="-543.0" y="2085.0090242889087" />
+      <point x="113.5" y="-69.66666666666666" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Monster" relationship="CREATE">
+      <point x="-138.75" y="-356.5" />
+      <point x="-490.25" y="1296.0" />
+      <point x="-616.5827382956226" y="1296.0" />
+      <point x="81.75" y="-116.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Game" target="com.bmcl.hero.Menu.Menu" relationship="TO_ONE">
+      <point x="56.75" y="104.5" />
+      <point x="-1025.3029084210582" y="2259.175690955575" />
+      <point x="-58.0" y="92.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Hero" relationship="CREATE">
+      <point x="83.25" y="-356.5" />
+      <point x="-268.25" y="1286.0" />
+      <point x="369.26511213662457" y="1286.0" />
+      <point x="-33.0" y="-176.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Position" relationship="TO_ONE">
+      <point x="-27.75" y="-356.5" />
+      <point x="-379.25" y="1207.087123638693" />
+      <point x="649.3880388949792" y="1207.087123638693" />
+      <point x="649.3880388949792" y="2024.2895579756569" />
+      <point x="600.8880388949792" y="2024.2895579756569" />
+      <point x="-48.5" y="68.5" />
+    </edge>
+    <edge source="com.bmcl.hero.Game" target="com.bmcl.hero.Arena" relationship="CREATE">
+      <point x="113.5" y="-0.0" />
+      <point x="-769.1040580074798" y="2154.675690955575" />
+      <point x="-769.1040580074798" y="1705.8987798100457" />
+      <point x="-166.5" y="-0.0" />
+    </edge>
+    <edge source="com.bmcl.hero.Arena" target="com.bmcl.hero.Wall" relationship="CREATE">
+      <point x="166.5" y="-178.25" />
+      <point x="-185.0" y="1484.25" />
+      <point x="-150.0" y="1484.25" />
+      <point x="-150.0" y="1680.7391065236907" />
+      <point x="-101.0" y="-34.25" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.6600422832980972" showDependencies="true" x="64.7914798206275" y="1749.4260089686097" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
