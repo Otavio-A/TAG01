@@ -21,14 +21,15 @@ Luigi:
 
   <br>
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.png)
+------
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/IMG_0935.jpeg)
 
-
+------
 - Members
   - Otávio A. Araújo A042508@umaia.pt
   - Diogo Soares Gonçalves A042244@umaia.pt
   - Gonçalo Caridade Ribeiro A043540@umaia.pt
-
+------
 ### IMPLEMENTED FEATURES
 
 - \*\*Jumping\*\* - The game character will jump when the up arrow key is pressed.
@@ -63,7 +64,7 @@ Luigi:
 ### TESTING
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/testCoverage.png)
 	
-
+------
 ### SELF-EVALUATION
   - Otávio A. Araújo A042508@umaia.pt 34%
   - Diogo Soares Gonçalves A042244@umaia.pt 33%
