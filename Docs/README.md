@@ -9,7 +9,7 @@ You can defeat the monsters by jumping on the floor bellow them, tripping the mo
 The level ends when all monsters are defeated.
 
 Controls:
-<br>Mario
+Mario
 - Left arrow Move Left
 - Right arrow Move Right
 - Up arrow Jump
@@ -19,19 +19,8 @@ Luigi
 - D move right
 - W Jump
 
-Ex1
-
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.png)
-
-Ex2
-
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/IMG_0935.jpeg)
-
-Ex3
-
-![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/MockNovo.png)
-
-
 
 
 - Members
@@ -40,12 +29,9 @@ Ex3
   - Gonçalo Caridade Ribeiro A043540@umaia.pt
 
 ### IMPLEMENTED FEATURES
-- \*\*Spawning Monsters\*\* - Spawn the monsters in the tubes.
+
 - \*\*Jumping\*\* - The game character will jump when the up arrow key is pressed.
-
-
-### PLANNED FEATURES
-
+- \*\*Gravity\*\* - Both players and monsters will fall if they are not standing on a platform
 - \*\*Defeat Monsters\*\* - To defeat a monster you must jump bellow them to trip the monster, allowing you to "kick them" by running at them.
 - \*\*POW Block\*\* - You can use the Pow block to help you when you are overwhelmed by monsters! When you jump on the pow block all monsters standing on platforms get knocked down!
 - \*\*COOP\*\* - Play as Mario or as Luigi!
@@ -60,19 +46,20 @@ Ex3
 
 #### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
 
+- Arena | Large Class
+	- The arena class ended up with the majority of methods turning it into a very complex class to both test and work in.
+	- A possible solution would be the **[Extract Class](https://refactoring.guru/extract-class)** technique, 
 
 
+- Methods using platform positions (hitPlat, is plat, etc...)| [Long Method](https://refactoring.guru/smells/long-method)
+	- Methods that check for positions of platforms ended with an excessive use of ifs and repeated coordinates that would hinder the creation of additional platforms or different levels.
+	- [Introduce Parameter Object](https://refactoring.guru/introduce-parameter-object) would be a very reasonable solution for the repeated positions of platforms.
 ------
 
-#### DATA CLASS
-![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Uml/Mamamia.png)
 
 
 ### TESTING
 
 
 ### SELF-EVALUATION
-  - Otávio A. Araújo A042508@umaia.pt         34%
-  - Diogo Soares Gonçalves A042244@umaia.pt   33%
-  - Gonçalo Caridade Ribeiro A043540@umaia.pt 33%
 
