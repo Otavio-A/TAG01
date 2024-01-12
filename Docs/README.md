@@ -109,7 +109,7 @@ Heres a simple diagram!
 
 #### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
 
-- Arena | Large Class
+- Arena | [Large Class](https://refactoring.guru/smells/large-class)
 	- The arena class ended up with the majority of methods turning it into a very complex class to both test and work in.
 	- A possible solution would be the **[Extract Class](https://refactoring.guru/extract-class)** technique, 
 
