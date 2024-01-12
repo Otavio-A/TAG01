@@ -27,7 +27,7 @@ Luigi
 
 ---------
 
-- Members
+Members
   - Otávio A. Araújo A042508@umaia.pt
   - Diogo Soares Gonçalves A042244@umaia.pt
   - Gonçalo Caridade Ribeiro A043540@umaia.pt
