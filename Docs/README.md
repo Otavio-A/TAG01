@@ -44,7 +44,7 @@ Luigi:
 ------
 
 #### [State](https://refactoring.guru/design-patterns/state)
-- When the player character and the monster collide, either one of them are defeated.
+- When the player character and the monster collide, either one of them must be defeated.
 ```
 public void verifyMonsterCollisions() {
 
