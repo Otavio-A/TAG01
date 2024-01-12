@@ -1,5 +1,5 @@
 ## POO_G1 - Mario Bros
-- The project is a demake of the classic arcade game Mario Bros!
+The project is a demake of the classic arcade game Mario Bros!
 The Mario bros must clean the sewers of monsters! Monsters appear from the upper pipes and move all the down to the bottom pipes.
 
 You can defeat the monsters by jumping on the floor bellow them, tripping the monsters allowing you to run in and finish them! Every monster defeated grants you points!
