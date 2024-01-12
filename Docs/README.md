@@ -60,7 +60,8 @@ Luigi:
 
 
 ### TESTING
-
+![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/testCoverage.png)
+	
 
 ### SELF-EVALUATION
   - Otávio A. Araújo A042508@umaia.pt 34%
