@@ -18,10 +18,10 @@ Luigi:
 - A move left
 - D move right
 - W Jump
-
+  
+------
   <br>
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.png)
-------
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/IMG_0935.jpeg)
 
 ------
@@ -98,9 +98,9 @@ public void verifyMonsterCollisions() {
 
 When the monster is maimed by either jumping on the platform below him or using the pow block, the monster enters the isHit State, where he is stunned and is vunerable for an attack! Allowing
 the player to run up to the monster, removing the monster from the monster list.
-In contrast, if the monster catches up to the player, a life is discounted.
-
+In contrast, if the monster catches up to the player, a life is discounted.<br>
 Heres a simple diagram!
+
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/diagramastate.png)
 
 
