@@ -12,16 +12,19 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static com.googlecode.lanterna.input.KeyType.ArrowRight;
+import static com.googlecode.lanterna.input.KeyType.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ArenaTest {
     Hero hero = new Hero(34,19);
+
 
     Game game= Mockito.mock(Game.class);
     Arena arena = new Arena(80,21,game);
@@ -111,16 +114,41 @@ class ArenaTest {
         assertEquals(lives, 2);
     }
 
+    // PROCESS KEY TESTS START HERE-----------------------------
+
     @Test
-    void processKeyTest() throws IOException {
+    void processKeyTestDireita() throws IOException {
         hero = arena.getHero();
         KeyStroke key = new KeyStroke(ArrowRight);
         arena.processKey(key);
         assertEquals(hero.getDirecao(), true);
 
     }
+    @Test
+    void processKeyTestEsquerda() throws IOException {
+        hero = arena.getHero();
+        KeyStroke key = new KeyStroke(ArrowLeft);
+        arena.processKey(key);
+        assertEquals(hero.getDirecao(), false);
 
+    }
+    @Test
+    void processLuigiKeyTestDireita() throws IOException {
+        Hero luigi = arena.getLuigi();
+        KeyStroke key = KeyStroke.fromString("d");
+        arena.processKey(key);
+        assertEquals(luigi.getDirecao(), true);
 
+    }
+    @Test
+    void processLuigiKeyTestEsquerda() throws IOException {
+        hero = arena.getHero();
+        KeyStroke key = KeyStroke.fromString("a");
+        arena.processKey(key);
+        assertEquals(hero.getDirecao(), false);
+    }
+
+    //PROCESS KEY TESTS END HERE-----------------------------
 
     //DRAW TESTS START HERE-----------------------------
 

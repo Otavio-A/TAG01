@@ -1,8 +1,11 @@
-package com.bmcl.monster;
+package com.bmcl.hero;
 
 import com.bmcl.hero.Monster;
 import com.bmcl.hero.Position;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,5 +30,19 @@ public class MonsterTest {
         monster.setDirecao(true);
         monster.setPosition(monster.move());
         assertEquals(monster.getPosition(), expected);
+    }
+    @Test
+    void monsterDrawTest(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        Position position = new Position(1,1);
+        monster.draw(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(position.getX(), position.getY()), "M");
+    }
+    @Test
+    void monsterDrawHitTest(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        Position position = new Position(1,1);
+        monster.drawhit(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(position.getX(), position.getY()), "W");
     }
 }

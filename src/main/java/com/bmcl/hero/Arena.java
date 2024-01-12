@@ -20,6 +20,10 @@ public class Arena {
 
     private final Hero luigi;
 
+    public Hero getLuigi() {
+        return luigi;
+    }
+
     private int width;
     private int height;
 
