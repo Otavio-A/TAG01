@@ -43,7 +43,67 @@ Luigi:
 
 ------
 
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+#### [State](https://refactoring.guru/design-patterns/state)
+- When the player character and the monster collide, either one of them are defeated.
+```
+public void verifyMonsterCollisions() {
+
+        Iterator<Monster> iterator = monsters.iterator();
+        while (iterator.hasNext()) {
+            Monster monster = iterator.next();
+            if (monster.getPosition().equals(hero.getPosition()) && monster.isHit()) {
+                addPontos();
+                System.out.println(pontos % 1000);
+                for (Wall wall : walls) {
+                    if (pontos % 1000 == 0 && wall.isUsed()) {
+                        wall.setUsed(false);}
+                }
+                iterator.remove();
+            }
+            if (monster.getPosition().equals(luigi.getPosition()) && monster.isHit()) {
+                addPontos();
+                for (Wall wall : walls) {
+                    if (pontos % 1000 == 0 && wall.isUsed()) {
+                        wall.setUsed(false);}
+                }
+                iterator.remove();
+            }
+        }
+
+
+        for (Monster monster : monsters){
+
+            if (hero.getPosition().equals(monster.getPosition()) && !monster.isHit()) {
+                System.out.println("You died!");
+                hero.setLives(hero.getLives() - 1);
+                hero.setPosition(respawn);
+                if (hero.getLives() == 0) {
+                    leaderboard();
+                    System.exit(0);
+                }
+            }
+
+            if(luigi.getPosition().equals(monster.getPosition()) && !monster.isHit()){
+
+                System.out.println("You died!");
+                hero.setLives(hero.getLives() - 1);
+                luigi.setPosition(respawn);
+                if (hero.getLives() == 0) {
+                    leaderboard();
+                    System.exit(0);
+                }
+            }
+        }
+    }
+```
+
+When the monster is maimed by either jumping on the platform below him or using the pow block, the monster enters the isHit State, where he is stunned and is vunerable for an attack! Allowing
+the player to run up to the monster, removing the monster from the monster list.
+In contrast, if the monster catches up to the player, a life is discounted.
+
+Heres a simple diagram!
+![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/diagramastate.png)
+
 
 ------
 
