@@ -4,8 +4,8 @@ The Mario bros must clean the sewers of monsters! Monsters appear from the upper
 
 You can defeat the monsters by jumping on the floor bellow them, tripping the monsters allowing you to run in and finish them! Every monster defeated grants you points!
 
-The level ends when all monsters are defeated.
 
+---------
 Controls:
 Mario
 - Left arrow Move Left
@@ -17,13 +17,15 @@ Luigi
 - D move right
 - W Jump
 
+  ---------
+
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/screenshotgame.png)
 
 ---------
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/pausedScreen.png)
 
 
-
+---------
 
 - Members
   - Otávio A. Araújo A042508@umaia.pt
