@@ -105,6 +105,10 @@ class ArenaTest {
         assertEquals(lives, 2);
     }
 
+    @Test
+    void processKeyTest(){
+
+    }
 
 
 

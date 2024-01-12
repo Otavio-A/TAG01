@@ -64,9 +64,6 @@ Hero extends Element {
         return new Position(position.getX() - 1, position.getY());
     }
 
-    public void draw(TextGraphics graphics) {
-
-    }
 
     public void marioDireita(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#e03e3e"));

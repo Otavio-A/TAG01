@@ -56,4 +56,34 @@ class HeroTest {
         assertEquals(hero.getLives(), 2);
     }
 
+
+    @Test
+    void marioDireitaTest(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero.marioDireita(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(hero.position.getX(), hero.position.getY()), "m");
+    }
+    @Test
+    void marioEsquerdaTest(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero.marioEsquerda(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(hero.position.getX(), hero.position.getY()), "n");
+    }
+    @Test
+    void luigiDireitaTest(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero.luigiDireita(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(hero.position.getX(), hero.position.getY()), "m");
+    }
+    @Test
+    void luigiEsquerdaTest(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero.luigiEsquerda(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(hero.position.getX(), hero.position.getY()), "n");
+    }
+    @Test
+    void setDirectionTest(){
+        hero.setDirecao(true);
+        assertEquals(hero.getDirecao(), true);
+    }
 }
