@@ -9,7 +9,7 @@ You can defeat the monsters by jumping on the floor bellow them, tripping the mo
 The level ends when all monsters are defeated.
 
 Controls:<br>
-Mario
+Mario:
 - Left arrow Move Left
 - Right arrow Move Right
 - Up arrow Jump
@@ -37,11 +37,10 @@ Luigi:
 - \*\*Defeat Monsters\*\* - To defeat a monster you must jump bellow them to trip the monster, allowing you to "kick them" by running at them.
 - \*\*POW Block\*\* - You can use the Pow block to help you when you are overwhelmed by monsters! When you jump on the pow block all monsters standing on platforms get knocked down!
 - \*\*COOP\*\* - Play as Mario or as Luigi!
+  
+------
 
 ### DESIGN
-
-
-------
 
 #### [State](https://refactoring.guru/design-patterns/state)
 - When the player character and the monster collide, either one of them must be defeated.
