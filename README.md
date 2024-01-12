@@ -18,6 +18,8 @@ Luigi
 - W Jump
 
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/screenshotgame.png)
+
+---------
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/pausedScreen.png)
 
 
