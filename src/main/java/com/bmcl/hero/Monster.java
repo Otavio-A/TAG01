@@ -12,11 +12,6 @@ public class Monster extends Element {
     private boolean especial = false;
     private boolean isHit = false;
 
-    public boolean isEspecial() {
-        return especial;
-    }
-
-
 
     public void setDirecao(boolean direcao) {
         this.direcao = direcao;

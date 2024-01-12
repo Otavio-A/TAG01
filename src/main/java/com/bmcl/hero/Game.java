@@ -151,7 +151,7 @@ public class Game {
 
 
             KeyStroke key = screen.pollInput(); //Não fica à espera de teclas, vai armazenando num buffer, devolve null se nenhuma tecla está no buffer
-
+            System.out.println(key);
             //funcao para processar a keyinput
             menu.processKey(key);
 

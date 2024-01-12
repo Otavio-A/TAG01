@@ -1,16 +1,22 @@
 package com.bmcl.hero;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 
-import javax.swing.plaf.basic.BasicDesktopIconUI;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.googlecode.lanterna.input.KeyType.ArrowRight;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -106,10 +112,53 @@ class ArenaTest {
     }
 
     @Test
-    void processKeyTest(){
+    void processKeyTest() throws IOException {
+        hero = arena.getHero();
+        KeyStroke key = new KeyStroke(ArrowRight);
+        arena.processKey(key);
+        assertEquals(hero.getDirecao(), true);
 
     }
 
 
+
+    //DRAW TESTS START HERE-----------------------------
+
+    @Test
+    void drawTest3Lives(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero = arena.getHero();
+        hero.setLives(3);
+        arena.draw(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(71, 0),"LIFES:eee");
+    }
+
+    @Test
+    void drawTest2Lives(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero = arena.getHero();
+        hero.setLives(2);
+        arena.draw(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(71, 0),"LIFES:ee");
+    }
+
+    @Test
+    void drawTest1Lives(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero = arena.getHero();
+        hero.setLives(1);
+        arena.draw(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(71, 0),"LIFES:e");
+    }
+    @Test
+    void drawTest0Lives(){
+        TextGraphics graphicsMock = Mockito.spy(TextGraphics.class);
+        hero = arena.getHero();
+        hero.setLives(0);
+        arena.draw(graphicsMock);
+        Mockito.verify(graphicsMock).putString(new TerminalPosition(71, 0),"LIFES:");
+    }
+
+    // DRAW TESTS END HERE -----------------
 
 }
