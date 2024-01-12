@@ -37,7 +37,9 @@ Members
 - \*\*Defeat Monsters\*\* - To defeat a monster you must jump bellow them to trip the monster, allowing you to "kick them" by running at them.
 - \*\*POW Block\*\* - You can use the Pow block to help you when you are overwhelmed by monsters! When you jump on the pow block all monsters standing on platforms get knocked down!
 - \*\*COOP\*\* - Play as Mario or as Luigi!
-  
+- \*\*LEADERBOARD\*\* - Scores are saved to a txt file.
+- \*\*PAUSE\*\* - By pressing the P key you can pause the game.
+- \*\*WARP\*\* - When you or the monsters go to either edges of the screen you warp to the other side!
 ------
 
 ### DESIGN
