@@ -18,9 +18,9 @@ Luigi:
 - A move left
 - D move right
 - W Jump
-  
-------
   <br>
+------
+ 
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/Arena.png)
 ![img](https://github.com/Otavio-A/TAG01/blob/master/Docs/Mocks/IMG_0935.jpeg)
 
