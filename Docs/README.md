@@ -117,7 +117,12 @@ Heres a simple diagram!
 - Methods using platform positions (hitPlat, is plat, etc...)| [Long Method](https://refactoring.guru/smells/long-method)
 	- Methods that check for positions of platforms ended with an excessive use of ifs and repeated coordinates that would hinder the creation of additional platforms or different levels.
 	- [Introduce Parameter Object](https://refactoring.guru/introduce-parameter-object) would be a very reasonable solution for the repeated positions of platforms.
-------
+
+ - Walls |  [Comments](https://refactoring.guru/smells/comments)
+	 - A method is filled with explanatory comments.
+ 	 - If a comment is intended to explain a complex expression, the expression should be split into understandable subexpressions using [Extract Variable](https://refactoring.guru/extract-variable).
+  
+  ------
 
 
 
